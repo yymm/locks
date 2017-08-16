@@ -1,0 +1,49 @@
+{
+  "name": "markdown-slide-editor.vue",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "yuya yano <yuya.yano.6260@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "deploy": "python -m SimpleHTTPServer $PORT"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "codemirror": "^5.28.0",
+    "lodash.assign": "^4.2.0",
+    "markdown-it": "^8.3.1",
+    "markdown-it-asciimath": "^1.0.0",
+    "markdown-it-block-embed": "0.0.3",
+    "markdown-it-container": "^2.0.0",
+    "markdown-it-deflist": "^2.0.3",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-footnote": "^3.0.1",
+    "markdown-it-highlightjs": "^3.0.0",
+    "markdown-it-imsize": "^2.0.1",
+    "markdown-it-ins": "^2.0.0",
+    "markdown-it-mark": "^2.0.0",
+    "markdown-it-playground": "0.0.5",
+    "markdown-it-smartarrows": "^1.0.1",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-task-lists": "^2.0.1",
+    "markdown-it-toc-and-anchor": "^4.1.2",
+    "vue": "^2.3.3",
+    "vue-router": "^2.7.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^12.1.0",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}
