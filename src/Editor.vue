@@ -79,6 +79,7 @@ export default {
   computed: {
     parsed: function() {
       if (this.selectedMode === 'slide') {
+        this.$nextTick(function() { this.moveSlide() })
         return this.cm ? MdSlideParser(this.cm.getValue()) : ""
       } else {
         return this.cm ? MdParser(this.cm.getValue()) : ""

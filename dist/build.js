@@ -27330,6 +27330,9 @@ __webpack_require__(224);
   computed: {
     parsed: function parsed() {
       if (this.selectedMode === 'slide') {
+        this.$nextTick(function () {
+          this.moveSlide();
+        });
         return this.cm ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__MarkdownSlideParser__["a" /* default */])(this.cm.getValue()) : "";
       } else {
         return this.cm ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__MarkdownParser__["a" /* default */])(this.cm.getValue()) : "";
