@@ -1,7 +1,7 @@
 <template>
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
-    <div :id="selectedMdTheme" class="markdown-body preview" v-html="parsed"></div>
+    <div :id="selectedMdTheme" class="markdown-body preview" :class="selectedMode === 'slide' ? 'slide' : ''" v-html="parsed"></div>
     <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode === 'slide'">&#10094;</div>
     <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode === 'slide'">&#10095;</div>
     <div class="current-page" v-if="selectedMode === 'slide'">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
@@ -318,5 +318,10 @@ html, body, #editor, #app{
 }
 .menu-item {
   flex: 1;
+}
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

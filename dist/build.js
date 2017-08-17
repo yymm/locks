@@ -45196,7 +45196,7 @@ exports = module.exports = __webpack_require__(106)();
 
 
 // module
-exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row}.editor,.preview{flex:1;overflow:scroll}.preview{background:#fbfbfb}.CodeMirror{font-size:1rem;height:100%}.markdown-body{padding:1.5rem}.markdown-body ul{margin:1em 0;padding-left:2em;list-style-type:disc}.markdown-body ol{margin:1em 0;padding-left:2em;list-style-type:decimal}.markdown-body em,.markdown-body i{font-style:italic}.control-button{position:absolute;font-size:2rem}.control-button:hover{color:#555;font-size:2.2rem}.control-left{bottom:20px;right:50px}.control-right{bottom:20px;right:10px}.current-page{position:absolute;font-size:.8rem;color:#222;bottom:10px;left:10px}.control-fullscreen{top:10px;right:10px;color:#000;opacity:.3;font-size:1rem}.control-fullscreen:hover{opacity:1;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}", ""]);
+exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row}.editor,.preview{flex:1;overflow:scroll}.preview{background:#fbfbfb}.CodeMirror{font-size:1rem;height:100%}.markdown-body{padding:1.5rem}.markdown-body ul{margin:1em 0;padding-left:2em;list-style-type:disc}.markdown-body ol{margin:1em 0;padding-left:2em;list-style-type:decimal}.markdown-body em,.markdown-body i{font-style:italic}.control-button{position:absolute;font-size:2rem}.control-button:hover{color:#555;font-size:2.2rem}.control-left{bottom:20px;right:50px}.control-right{bottom:20px;right:10px}.current-page{position:absolute;font-size:.8rem;color:#222;bottom:10px;left:10px}.control-fullscreen{top:10px;right:10px;color:#000;opacity:.3;font-size:1rem}.control-fullscreen:hover{opacity:1;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}.slide{display:flex;justify-content:center;align-items:center}", ""]);
 
 // exports
 
@@ -80300,6 +80300,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }), _vm._v(" "), _c('div', {
     staticClass: "markdown-body preview",
+    class: _vm.selectedMode === 'slide' ? 'slide' : '',
     attrs: {
       "id": _vm.selectedMdTheme
     },
