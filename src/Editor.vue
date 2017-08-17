@@ -1,71 +1,31 @@
 <template>
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
-    <div class="markdown-body preview" v-html="parsed"></div>
+    <div :id="selectedMdTheme" class="markdown-body preview" v-html="parsed"></div>
     <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode === 'slide'">&#10094;</div>
     <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode === 'slide'">&#10095;</div>
+    <div class="current-page" v-if="selectedMode === 'slide'">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
     <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
-    <div class="menu">
+    <div class="menu" :style="{ display: showEditor }">
       <div class="menu-item">
-        <select v-model="selectedTheme" @change="changeTheme">
-          <option>abcdef</option>
-          <option>ambiance-mobile</option>
-          <option>ambiance</option>
-          <option>base16-dark</option>
-          <option>base16-light</option>
-          <option>bespin</option>
-          <option>blackboard</option>
-          <option>cobalt</option>
-          <option>colorforth</option>
-          <option>dracula</option>
-          <option>duotone-dark</option>
-          <option>duotone-light</option>
-          <option>eclipse</option>
-          <option>elegant</option>
-          <option>erlang-dark</option>
-          <option>hopscotch</option>
-          <option>icecoder</option>
-          <option>isotope</option>
-          <option>lesser-dark</option>
-          <option>liquibyte</option>
-          <option>material</option>
-          <option>mbo</option>
-          <option>mdn-like</option>
-          <option>midnight</option>
-          <option selected>monokai</option>
-          <option>neat</option>
-          <option>neo</option>
-          <option>night</option>
-          <option>panda-syntax</option>
-          <option>paraiso-dark</option>
-          <option>paraiso-light</option>
-          <option>pastel-on-dark</option>
-          <option>railscasts</option>
-          <option>rubyblue</option>
-          <option>seti</option>
-          <option>solarized</option>
-          <option>the-matrix</option>
-          <option>tomorrow-night-bright</option>
-          <option>tomorrow-night-eighties</option>
-          <option>ttcn</option>
-          <option>twilight</option>
-          <option>vibrant-ink</option>
-          <option>xq-dark</option>
-          <option>xq-light</option>
-          <option>yeti</option>
-          <option>zenburn</option>
-          <option>3024-day</option>
-          <option>3024-night</option>
+        <select v-model="selectedCmTheme" @change="changeCmTheme">
+          <option v-for="theme in cmThemes">{{ theme }}</option>
         </select>
         <select v-model="selectedKeymap" @change="changeKeymap">
           <option>vim</option>
           <option>emacs</option>
           <option>sublime</option>
-          <option selected>default</option>
+          <option>default</option>
         </select>
         <select v-model="selectedMode">
           <option>normal</option>
           <option>slide</option>
+        </select>
+        <select v-model="selectedHljsStyle" @change="changeHljsStyle">
+          <option v-for="style in highlightjsStyles">{{ style }}</option>
+        </select>
+        <select v-model="selectedMdTheme">
+          <option v-for="theme in mdThemes">{{ theme }}</option>
         </select>
       </div>
     </div>
@@ -103,10 +63,16 @@ export default {
     return {
       cm: null,
       showIndex: 0,
+      maxIndex: 0,
       showEditor: 'block',
       selectedMode: 'normal',
-      selectedTheme: 'monokai',
-      selectedKeymap: 'default'
+      cmThemes: [],
+      selectedCmTheme: 'material',
+      selectedKeymap: 'default',
+      selectedHljsStyle: 'Default',
+      highlightjsStyles: [],
+      selectedMdTheme: 'default',
+      mdThemes: []
     }
   },
   computed: {
@@ -121,6 +87,7 @@ export default {
   methods: {
     moveSlide: function(n) {
       let els = this.$el.querySelectorAll('.slidePage')
+      this.maxIndex = els.length
       if (this.showIndex > els.length - 1) this.showIndex = 0
       if (this.showIndex < 0) this.showIndex = els.length - 1
       for (let el of els) {
@@ -135,11 +102,16 @@ export default {
         this.showEditor = 'block'
       }
     },
-    changeTheme: function() {
+    changeCmTheme: function() {
       if (this.cm) {
-        console.log(this.selectedTheme)
-        this.cm.setOption("theme", this.selectedTheme)
+        this.cm.setOption("theme", this.selectedCmTheme)
       }
+    },
+    changeHljsStyle: function() {
+      let els = document.querySelectorAll('link[title]')
+      Array.from(els).map((item) => {
+        item.disabled = (item.getAttribute('title') !== this.selectedHljsStyle)
+      })
     },
     changeKeymap: function() {
       if (this.cm) {
@@ -148,7 +120,31 @@ export default {
     }
   },
   async mounted() {
+    // Load and Register codemirror css from index.html by 'link[type]'
+    let cmThemeEls = document.querySelectorAll('link[type]')
+    this.cmThemes = Array.from(cmThemeEls).map((item) => {
+      let url = item.getAttribute('href')
+      return url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('.'))
+    })
+
+    // Load and Register highlight.js styles from index.html by 'link[title]'
+    let highlightjsStyleEls = document.querySelectorAll('link[title]')
+    this.highlightjsStyles = Array.from(highlightjsStyleEls).map((item) => {
+      return item.getAttribute('title')
+    })
+
+    // Load and Register highlight.js styles from index.html by 'link[title]'
+    let mdThemeEls = document.querySelectorAll('link[hreflang]')
+    this.mdThemes = Array.from(mdThemeEls).map((item) => {
+      let url = item.getAttribute('href')
+      return url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('.'))
+    })
+    console.log(document.querySelectorAll('link[hreflang]'))
+
+    // Initialize localStorage Key
     let localStorageKey = 'memo-' + this.$router.currentRoute.path.replace('/', '')
+
+    // Create CodeMirror
     this.cm = CodeMirror(this.$el.querySelector('.editor'), {
       mode: 'gfm',
       value: localStorage[localStorageKey],
@@ -252,6 +248,13 @@ html, body, #editor, #app{
 .control-right {
   bottom: 20px;
   right: 10px;
+}
+.current-page {
+  position: absolute;
+  font-size: 0.8rem;
+  color: #222;
+  bottom: 10px;
+  left: 10px;
 }
 .control-fullscreen {
   top: 10px;

@@ -27283,46 +27283,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -27353,10 +27313,16 @@ __webpack_require__(224);
     return {
       cm: null,
       showIndex: 0,
+      maxIndex: 0,
       showEditor: 'block',
       selectedMode: 'normal',
-      selectedTheme: 'monokai',
-      selectedKeymap: 'default'
+      cmThemes: [],
+      selectedCmTheme: 'material',
+      selectedKeymap: 'default',
+      selectedHljsStyle: 'Default',
+      highlightjsStyles: [],
+      selectedMdTheme: 'default',
+      mdThemes: []
     };
   },
 
@@ -27372,6 +27338,7 @@ __webpack_require__(224);
   methods: {
     moveSlide: function moveSlide(n) {
       var els = this.$el.querySelectorAll('.slidePage');
+      this.maxIndex = els.length;
       if (this.showIndex > els.length - 1) this.showIndex = 0;
       if (this.showIndex < 0) this.showIndex = els.length - 1;
       var _iteratorNormalCompletion = true;
@@ -27408,11 +27375,18 @@ __webpack_require__(224);
         this.showEditor = 'block';
       }
     },
-    changeTheme: function changeTheme() {
+    changeCmTheme: function changeCmTheme() {
       if (this.cm) {
-        console.log(this.selectedTheme);
-        this.cm.setOption("theme", this.selectedTheme);
+        this.cm.setOption("theme", this.selectedCmTheme);
       }
+    },
+    changeHljsStyle: function changeHljsStyle() {
+      var _this = this;
+
+      var els = document.querySelectorAll('link[title]');
+      Array.from(els).map(function (item) {
+        item.disabled = item.getAttribute('title') !== _this.selectedHljsStyle;
+      });
     },
     changeKeymap: function changeKeymap() {
       if (this.cm) {
@@ -27422,12 +27396,39 @@ __webpack_require__(224);
   },
   mounted: function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-      var localStorageKey, res, emojiList, key, emojiComplete;
+      var cmThemeEls, highlightjsStyleEls, mdThemeEls, localStorageKey, res, emojiList, key, emojiComplete;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              // Load and Register codemirror css from index.html by 'link[type]'
+              cmThemeEls = document.querySelectorAll('link[type]');
+
+              this.cmThemes = Array.from(cmThemeEls).map(function (item) {
+                var url = item.getAttribute('href');
+                return url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
+              });
+
+              // Load and Register highlight.js styles from index.html by 'link[title]'
+              highlightjsStyleEls = document.querySelectorAll('link[title]');
+
+              this.highlightjsStyles = Array.from(highlightjsStyleEls).map(function (item) {
+                return item.getAttribute('title');
+              });
+
+              // Load and Register highlight.js styles from index.html by 'link[title]'
+              mdThemeEls = document.querySelectorAll('link[hreflang]');
+
+              this.mdThemes = Array.from(mdThemeEls).map(function (item) {
+                var url = item.getAttribute('href');
+                return url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
+              });
+              console.log(document.querySelectorAll('link[hreflang]'));
+
+              // Initialize localStorage Key
               localStorageKey = 'memo-' + this.$router.currentRoute.path.replace('/', '');
+
+              // Create CodeMirror
 
               this.cm = __WEBPACK_IMPORTED_MODULE_0_codemirror___default()(this.$el.querySelector('.editor'), {
                 mode: 'gfm',
@@ -27439,21 +27440,21 @@ __webpack_require__(224);
               //
               // Emoji Complete
               //
-              _context.next = 4;
+              _context.next = 11;
               return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('https://api.github.com/emojis');
 
-            case 4:
+            case 11:
               res = _context.sent;
 
               if (!(res.status !== 200)) {
-                _context.next = 8;
+                _context.next = 15;
                 break;
               }
 
               console.warning('github api is dead...woops...');
               return _context.abrupt('return');
 
-            case 8:
+            case 15:
               emojiList = [];
 
               for (key in res.data) {
@@ -27493,7 +27494,7 @@ __webpack_require__(224);
 
               this.cm.on('change', emojiComplete);
 
-            case 12:
+            case 19:
             case 'end':
               return _context.stop();
           }
@@ -45156,7 +45157,7 @@ exports = module.exports = __webpack_require__(106)();
 
 
 // module
-exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row}.editor,.preview{flex:1;overflow:scroll}.preview{background:#fbfbfb}.CodeMirror{font-size:1rem;height:100%}.markdown-body{padding:1.5rem}.markdown-body ul{margin:1em 0;padding-left:2em;list-style-type:disc}.markdown-body ol{margin:1em 0;padding-left:2em;list-style-type:decimal}.control-button{position:absolute;font-size:2rem}.control-button:hover{color:#555;font-size:2.2rem}.control-left{bottom:20px;right:50px}.control-right{bottom:20px;right:10px}.control-fullscreen{top:10px;right:10px;color:#f2f2f2;font-size:1rem}.control-fullscreen:hover{color:#aaa;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}", ""]);
+exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row}.editor,.preview{flex:1;overflow:scroll}.preview{background:#fbfbfb}.CodeMirror{font-size:1rem;height:100%}.markdown-body{padding:1.5rem}.markdown-body ul{margin:1em 0;padding-left:2em;list-style-type:disc}.markdown-body ol{margin:1em 0;padding-left:2em;list-style-type:decimal}.control-button{position:absolute;font-size:2rem}.control-button:hover{color:#555;font-size:2.2rem}.control-left{bottom:20px;right:50px}.control-right{bottom:20px;right:10px}.current-page{position:absolute;font-size:.8rem;color:#222;bottom:10px;left:10px}.control-fullscreen{top:10px;right:10px;color:#f2f2f2;font-size:1rem}.control-fullscreen:hover{color:#aaa;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}", ""]);
 
 // exports
 
@@ -80260,6 +80261,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })
   }), _vm._v(" "), _c('div', {
     staticClass: "markdown-body preview",
+    attrs: {
+      "id": _vm.selectedMdTheme
+    },
     domProps: {
       "innerHTML": _vm._s(_vm.parsed)
     }
@@ -80277,21 +80281,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.moveSlide(_vm.showIndex++)
       }
     }
-  }, [_vm._v("❯")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("❯")]) : _vm._e(), _vm._v(" "), (_vm.selectedMode === 'slide') ? _c('div', {
+    staticClass: "current-page"
+  }, [_vm._v(_vm._s(((_vm.showIndex+1) + " / " + _vm.maxIndex)))]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "control-button control-fullscreen",
     on: {
       "click": _vm.handleFullscreen
     }
   }, [_vm._v("fullscreen")]), _vm._v(" "), _c('div', {
-    staticClass: "menu"
+    staticClass: "menu",
+    style: ({
+      display: _vm.showEditor
+    })
   }, [_c('div', {
     staticClass: "menu-item"
   }, [_c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.selectedTheme),
-      expression: "selectedTheme"
+      value: (_vm.selectedCmTheme),
+      expression: "selectedCmTheme"
     }],
     on: {
       "change": [function($event) {
@@ -80301,14 +80310,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           var val = "_value" in o ? o._value : o.value;
           return val
         });
-        _vm.selectedTheme = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, _vm.changeTheme]
+        _vm.selectedCmTheme = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeCmTheme]
     }
-  }, [_c('option', [_vm._v("abcdef")]), _vm._v(" "), _c('option', [_vm._v("ambiance-mobile")]), _vm._v(" "), _c('option', [_vm._v("ambiance")]), _vm._v(" "), _c('option', [_vm._v("base16-dark")]), _vm._v(" "), _c('option', [_vm._v("base16-light")]), _vm._v(" "), _c('option', [_vm._v("bespin")]), _vm._v(" "), _c('option', [_vm._v("blackboard")]), _vm._v(" "), _c('option', [_vm._v("cobalt")]), _vm._v(" "), _c('option', [_vm._v("colorforth")]), _vm._v(" "), _c('option', [_vm._v("dracula")]), _vm._v(" "), _c('option', [_vm._v("duotone-dark")]), _vm._v(" "), _c('option', [_vm._v("duotone-light")]), _vm._v(" "), _c('option', [_vm._v("eclipse")]), _vm._v(" "), _c('option', [_vm._v("elegant")]), _vm._v(" "), _c('option', [_vm._v("erlang-dark")]), _vm._v(" "), _c('option', [_vm._v("hopscotch")]), _vm._v(" "), _c('option', [_vm._v("icecoder")]), _vm._v(" "), _c('option', [_vm._v("isotope")]), _vm._v(" "), _c('option', [_vm._v("lesser-dark")]), _vm._v(" "), _c('option', [_vm._v("liquibyte")]), _vm._v(" "), _c('option', [_vm._v("material")]), _vm._v(" "), _c('option', [_vm._v("mbo")]), _vm._v(" "), _c('option', [_vm._v("mdn-like")]), _vm._v(" "), _c('option', [_vm._v("midnight")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "selected": ""
-    }
-  }, [_vm._v("monokai")]), _vm._v(" "), _c('option', [_vm._v("neat")]), _vm._v(" "), _c('option', [_vm._v("neo")]), _vm._v(" "), _c('option', [_vm._v("night")]), _vm._v(" "), _c('option', [_vm._v("panda-syntax")]), _vm._v(" "), _c('option', [_vm._v("paraiso-dark")]), _vm._v(" "), _c('option', [_vm._v("paraiso-light")]), _vm._v(" "), _c('option', [_vm._v("pastel-on-dark")]), _vm._v(" "), _c('option', [_vm._v("railscasts")]), _vm._v(" "), _c('option', [_vm._v("rubyblue")]), _vm._v(" "), _c('option', [_vm._v("seti")]), _vm._v(" "), _c('option', [_vm._v("solarized")]), _vm._v(" "), _c('option', [_vm._v("the-matrix")]), _vm._v(" "), _c('option', [_vm._v("tomorrow-night-bright")]), _vm._v(" "), _c('option', [_vm._v("tomorrow-night-eighties")]), _vm._v(" "), _c('option', [_vm._v("ttcn")]), _vm._v(" "), _c('option', [_vm._v("twilight")]), _vm._v(" "), _c('option', [_vm._v("vibrant-ink")]), _vm._v(" "), _c('option', [_vm._v("xq-dark")]), _vm._v(" "), _c('option', [_vm._v("xq-light")]), _vm._v(" "), _c('option', [_vm._v("yeti")]), _vm._v(" "), _c('option', [_vm._v("zenburn")]), _vm._v(" "), _c('option', [_vm._v("3024-day")]), _vm._v(" "), _c('option', [_vm._v("3024-night")])]), _vm._v(" "), _c('select', {
+  }, _vm._l((_vm.cmThemes), function(theme) {
+    return _c('option', [_vm._v(_vm._s(theme))])
+  })), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -80326,11 +80333,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.selectedKeymap = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }, _vm.changeKeymap]
     }
-  }, [_c('option', [_vm._v("vim")]), _vm._v(" "), _c('option', [_vm._v("emacs")]), _vm._v(" "), _c('option', [_vm._v("sublime")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "selected": ""
-    }
-  }, [_vm._v("default")])]), _vm._v(" "), _c('select', {
+  }, [_c('option', [_vm._v("vim")]), _vm._v(" "), _c('option', [_vm._v("emacs")]), _vm._v(" "), _c('option', [_vm._v("sublime")]), _vm._v(" "), _c('option', [_vm._v("default")])]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -80348,7 +80351,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.selectedMode = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
       }
     }
-  }, [_c('option', [_vm._v("normal")]), _vm._v(" "), _c('option', [_vm._v("slide")])])])])])
+  }, [_c('option', [_vm._v("normal")]), _vm._v(" "), _c('option', [_vm._v("slide")])]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedHljsStyle),
+      expression: "selectedHljsStyle"
+    }],
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedHljsStyle = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, _vm.changeHljsStyle]
+    }
+  }, _vm._l((_vm.highlightjsStyles), function(style) {
+    return _c('option', [_vm._v(_vm._s(style))])
+  })), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedMdTheme),
+      expression: "selectedMdTheme"
+    }],
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedMdTheme = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, _vm._l((_vm.mdThemes), function(theme) {
+    return _c('option', [_vm._v(_vm._s(theme))])
+  }))])])])
 },staticRenderFns: []}
 
 /***/ }),

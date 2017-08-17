@@ -1,0 +1,8 @@
+#slide-simple {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#slide-simple .slidePage {
+  width: 800px;
+}
