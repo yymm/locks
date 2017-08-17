@@ -17,14 +17,14 @@
           <option>sublime</option>
           <option>default</option>
         </select>
-        <select v-model="selectedMode">
+        <select v-model="selectedMode" @change="changeMode">
           <option>normal</option>
           <option>slide</option>
         </select>
         <select v-model="selectedHljsStyle" @change="changeHljsStyle">
           <option v-for="style in highlightjsStyles">{{ style }}</option>
         </select>
-        <select v-model="selectedMdTheme">
+        <select v-model="selectedMdTheme" @change="changeMdTheme">
           <option v-for="theme in mdThemes">{{ theme }}</option>
         </select>
       </div>
@@ -62,6 +62,7 @@ export default {
   data () {
     return {
       cm: null,
+      localStorageKey: '',
       showIndex: 0,
       maxIndex: 0,
       showEditor: 'block',
@@ -105,17 +106,42 @@ export default {
     changeCmTheme: function() {
       if (this.cm) {
         this.cm.setOption("theme", this.selectedCmTheme)
+        this.saveLocalstorage()
       }
     },
     changeHljsStyle: function() {
       let els = document.querySelectorAll('link[title]')
       Array.from(els).map((item) => {
         item.disabled = (item.getAttribute('title') !== this.selectedHljsStyle)
+        this.saveLocalstorage()
       })
     },
     changeKeymap: function() {
       if (this.cm) {
         this.cm.setOption("keyMap", this.selectedKeymap)
+        this.saveLocalstorage()
+      }
+    },
+    changeMode: function() {
+      this.saveLocalstorage()
+    },
+    changeMdTheme: function() {
+      this.saveLocalstorage()
+    },
+    saveLocalstorage: function() {
+      if (this.cm) {
+        let data = {
+          text: this.cm.getValue(),
+          options: {
+            cmTheme: this.selectedCmTheme,
+            mode: this.selectedMode,
+            keymap: this.selectedKeymap,
+            hljsStyle: this.selectedHljsStyle,
+            mdThemes: this.selectedMdTheme
+          }
+        }
+        // console.log('SAVE: ', data)
+        localStorage[this.localStorageKey] = JSON.stringify(data)
       }
     }
   },
@@ -139,16 +165,25 @@ export default {
       let url = item.getAttribute('href')
       return url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('.'))
     })
-    console.log(document.querySelectorAll('link[hreflang]'))
 
     // Initialize localStorage Key
-    let localStorageKey = 'memo-' + this.$router.currentRoute.path.replace('/', '')
+    this.localStorageKey = 'memo-' + this.$router.currentRoute.path.replace('/', '')
+
+    // if storage existed, change editor state
+    let storage = JSON.parse(localStorage[this.localStorageKey] || 'null')
+    if (storage) {
+      this.selectedCmTheme = storage.options.cmTheme
+      this.selectedMode= storage.options.mode
+      this.selectedKeymap = storage.options.keymap
+      this.selectedHljsStyle = storage.options.hljsStyle
+      this.selectedMdTheme = storage.options.mdThemes
+    }
 
     // Create CodeMirror
     this.cm = CodeMirror(this.$el.querySelector('.editor'), {
       mode: 'gfm',
-      value: localStorage[localStorageKey],
-      theme: 'monokai',
+      value: storage ? storage.text : '',
+      theme: storage ? storage.options.cmTheme : this.selectedCmTheme,
       lineNumbers: true
     })
 
@@ -157,7 +192,7 @@ export default {
     //
     let res = await axios.get('https://api.github.com/emojis')
     if (res.status !== 200) {
-      console.warning('github api is dead...woops...')
+      console.log('Axios Error: github api is dead...woops...')
       return
     }
 
@@ -167,7 +202,9 @@ export default {
     }
 
     let emojiComplete = function(cm) {
-      localStorage[localStorageKey] = cm.getValue()
+      // Save localStorage at editing everytime
+      this.saveLocalstorage()
+      // Hinet
       CodeMirror.showHint(cm, function() {
         let cur = cm.getCursor(), token = cm.getTokenAt(cur)
         let start = token.start, end = cur.ch, word = token.string.slice(0, end - start)
@@ -193,7 +230,7 @@ export default {
       }, { completeSingle: false })
     }
 
-    this.cm.on('change', emojiComplete)
+    this.cm.on('change', emojiComplete.bind(this))
   }
 }
 </script>
@@ -259,11 +296,11 @@ html, body, #editor, #app{
 .control-fullscreen {
   top: 10px;
   right: 10px;
-  color: #f2f2f2;
+  color: #bbb;
   font-size: 1rem;
 }
 .control-fullscreen:hover {
-  color: #aaa;
+  color: #999;
   font-size: 1rem;
 }
 .menu {

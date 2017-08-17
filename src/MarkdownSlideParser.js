@@ -9,7 +9,7 @@ import markdownItMark from 'markdown-it-mark'
 import markdownItContainer from 'markdown-it-container'
 import markdownItFootnote from 'markdown-it-footnote'
 import markdownItDeflist from 'markdown-it-deflist'
-import markdownItBlockEmbed from 'markdown-it-block-embed'
+import markdownItVideo from 'markdown-it-video'
 import markdownItImsize from 'markdown-it-imsize'
 import markdownItTaskLists from 'markdown-it-task-lists'
 import markdownItPlayground from 'markdown-it-playground'
@@ -32,7 +32,7 @@ let md = markdownIt({
   .use(markdownItContainer)
   .use(markdownItFootnote)
   .use(markdownItDeflist)
-  .use(markdownItBlockEmbed)
+  .use(markdownItVideo)
   .use(markdownItImsize)
   .use(markdownItTaskLists, {enabled: true})
   .use(markdownItPlayground)

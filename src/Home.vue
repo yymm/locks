@@ -4,7 +4,7 @@
     <div class='item' v-for="(value, key, index) in data" :key="index">
       <router-link :to="key">
         <span class='datetime'>{{ key }}</span>
-        <span class='shorthand'>{{ value.substr(0, value.indexOf('\n')) }}</span>
+        <span class='shorthand'>{{ value.text.substr(0, value.text.indexOf('\n')) }}</span>
       </router-link>
       <span class='delete button' @click="deleteData(key)">delete</span>
     </div>
@@ -30,11 +30,15 @@ export default {
   },
   created() {
     for (let key in localStorage) {
-      // if (localStorage.hasOwnProperty(key)) {
-      //   console.log('storage-item:', key, localStorage[key])
-      // }
       if (localStorage.hasOwnProperty(key) && key.indexOf('memo-') === 0 ) {
-        this.data[key.replace('memo-', '')] = localStorage[key]
+        let value = null
+        try {
+          value = JSON.parse(localStorage[key])
+          this.data[key.replace('memo-', '')] = value
+        }
+        catch(e) {
+          localStorage.removeItem(key)
+        }
       }
     }
   },
