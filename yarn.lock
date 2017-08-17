@@ -2380,6 +2380,10 @@ markdown-it-asciimath@^1.0.0:
   dependencies:
     katex "^0.7.1"
 
+markdown-it-block-embed@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/markdown-it-block-embed/-/markdown-it-block-embed-0.0.3.tgz#5eb08253f35c37b34c07eec2b9e275ee85eea906"
+
 markdown-it-container@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/markdown-it-container/-/markdown-it-container-2.0.0.tgz#0019b43fd02eefece2f1960a2895fba81a404695"
@@ -2441,10 +2445,6 @@ markdown-it-toc-and-anchor@^4.1.2:
   dependencies:
     clone "^2.1.0"
     uslug "^1.0.4"
-
-markdown-it-video@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/markdown-it-video/-/markdown-it-video-0.4.0.tgz#1f51a3471456a2509a3820dced9ad1ce961bdb64"
 
 markdown-it@^8.3.1:
   version "8.3.2"

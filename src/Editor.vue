@@ -270,6 +270,10 @@ html, body, #editor, #app{
   padding-left: 2em;
   list-style-type: decimal;
 }
+.markdown-body i,
+.markdown-body em {
+    font-style: italic;
+}
 .control-button {
   position: absolute;
   font-size: 2rem;
@@ -296,11 +300,12 @@ html, body, #editor, #app{
 .control-fullscreen {
   top: 10px;
   right: 10px;
-  color: #bbb;
+  color: black;
+  opacity: 0.3;
   font-size: 1rem;
 }
 .control-fullscreen:hover {
-  color: #999;
+  opacity: 1;
   font-size: 1rem;
 }
 .menu {
