@@ -1,0 +1,76 @@
+#vue a {
+  color: #42b983;
+  font-weight: 600;
+}
+
+#vue h1,
+#vue h2,
+#vue h3,
+#vue h4,
+#vue h5,
+#vue h6 {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+#vue h3,
+#vue h4,
+#vue h5,
+#vue h6 {
+  position: relative;
+  margin: 52px 0 1.2em;
+  border: none;
+}
+
+#vue h3::after,
+#vue h4::after,
+#vue h5::after,
+#vue h6::after {
+    content: "#";
+    color: #42b983;
+    position: absolute;
+    left: -0.7em;
+    bottom: -2px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#vue {
+  color: #34495e;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vscode-dark table,
+#vscode-dark thead,
+#vscode-dark tbody,
+#vscode-dark tr,
+#vscode-dark th,
+#vscode-dark td {
+  border-color: #ddd;
+}
+
+#vue blockquote {
+  margin: 2em 0;
+  padding-left: 20px;
+  border-left: 4px solid #42b983;
+}
+
+#vue blockquote p {
+  font-weight: 600;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#vue mark {
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-size: 0.8em;
+  color: #e96900;
+  padding: 3px 5px;
+  margin: 0 2px;
+  border-radius: 2px;
+  white-space: nowrap;
+  background-color: #f8f8f8;
+}

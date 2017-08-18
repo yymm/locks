@@ -1,0 +1,47 @@
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+#vscode-dark a {
+  color: #61AFEF;
+}
+
+#vscode-dark h1,
+#vscode-dark h2,
+#vscode-dark h3,
+#vscode-dark h4,
+#vscode-dark h5,
+#vscode-dark h6 {
+  font-weight: 600;
+  color: #E06C75;
+}
+
+#vscode-dark {
+  color: #ABB2BF;
+  background-color: #2C323C;
+}
+
+#vscode-dark hr {
+  border-color: #2C323C;
+}

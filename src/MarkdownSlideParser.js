@@ -1,7 +1,7 @@
 import markdownIt from 'markdown-it'
 import markdownItEmoji from 'markdown-it-emoji'
 import markdownItAsciimath from 'markdown-it-asciimath'
-import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
+//import markdownItToc from 'markdown-it-toc'
 import markdownItSub from 'markdown-it-sub'
 import markdownItSup from 'markdown-it-sup'
 import markdownItIns from 'markdown-it-ins'
@@ -24,7 +24,7 @@ let md = markdownIt({
   })
   .use(markdownItEmoji)
   .use(markdownItAsciimath)
-  //.use(markdownItTocAndAnchor, { anchorLinkSymbol: '✘' }) // https://github.com/medfreeman/markdown-it-toc-and-anchor/issues/36
+  //.use(markdownItToc)
   .use(markdownItSub)
   .use(markdownItSup)
   .use(markdownItIns)
@@ -40,7 +40,7 @@ let md = markdownIt({
   .use(markdownItHighlightjs)
 
 md.renderer.rules.hr = function() {
-  return '</div><div class="slidePage" style="display: none;">'
+  return '</div><div class="slide-page" style="display: none;">'
 }
 
 export default function(text) {
@@ -52,5 +52,5 @@ export default function(text) {
     // ignore
     console.log(e)
   }
-  return '<div class="slidePage" style="display: block;">' + parsedHTML + '</div>'
+  return '<div class="slide-page" style="display: block;">' + parsedHTML + '</div>'
 }

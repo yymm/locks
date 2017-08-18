@@ -1,7 +1,7 @@
 import markdownIt from 'markdown-it'
 import markdownItEmoji from 'markdown-it-emoji'
 import markdownItAsciimath from 'markdown-it-asciimath'
-import markdownItTocAndAnchor from 'markdown-it-toc-and-anchor'
+//import markdownItToc from 'markdown-it-toc'
 import markdownItSub from 'markdown-it-sub'
 import markdownItSup from 'markdown-it-sup'
 import markdownItIns from 'markdown-it-ins'
@@ -23,8 +23,8 @@ let md = markdownIt({
     typography: true
   })
   .use(markdownItEmoji)
-  .use(markdownItAsciimath)
-  //.use(markdownItTocAndAnchor, { anchorLinkSymbol: '✘' }) // https://github.com/medfreeman/markdown-it-toc-and-anchor/issues/36
+  .use(markdownItAsciimath, { "useKeyword": true })
+  //.use(markdownItToc)
   .use(markdownItSub)
   .use(markdownItSup)
   .use(markdownItIns)

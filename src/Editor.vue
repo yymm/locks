@@ -1,10 +1,14 @@
 <template>
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
-    <div :id="selectedMdTheme" class="markdown-body preview" :class="selectedMode === 'slide' ? 'slide' : ''" v-html="parsed"></div>
-    <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode === 'slide'">&#10094;</div>
-    <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode === 'slide'">&#10095;</div>
-    <div class="current-page" v-if="selectedMode === 'slide'">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
+    <!--<div :id="selectedMdTheme" class="markdown-body preview" :class="selectedMode === 'slide' ? 'slide' : ''" v-html="parsed">-->
+    <div :id="selectedMdTheme" class="preview" :class="selectedMode">
+      <div class="markdown-body" v-html="parsed">
+      </div>
+    </div>
+    <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
+    <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
+    <div class="current-page" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
     <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
     <div class="menu" :style="{ display: showEditor }">
       <div class="menu-item">
@@ -20,6 +24,7 @@
         <select v-model="selectedMode" @change="changeMode">
           <option>normal</option>
           <option>slide</option>
+          <option>slide-center</option>
         </select>
         <select v-model="selectedHljsStyle" @change="changeHljsStyle">
           <option v-for="style in highlightjsStyles">{{ style }}</option>
@@ -78,7 +83,7 @@ export default {
   },
   computed: {
     parsed: function() {
-      if (this.selectedMode === 'slide') {
+      if (this.selectedMode.indexOf('slide') === 0) {
         this.$nextTick(function() { this.moveSlide() })
         return this.cm ? MdSlideParser(this.cm.getValue()) : ""
       } else {
@@ -88,7 +93,7 @@ export default {
   },
   methods: {
     moveSlide: function(n) {
-      let els = this.$el.querySelectorAll('.slidePage')
+      let els = this.$el.querySelectorAll('.slide-page')
       this.maxIndex = els.length
       if (this.showIndex > els.length - 1) this.showIndex = 0
       if (this.showIndex < 0) this.showIndex = els.length - 1
@@ -251,7 +256,6 @@ html, body, #editor, #app{
 }
 .preview {
   flex: 1;
-  background: #fbfbfb;
   overflow: scroll;
 }
 .CodeMirror {
@@ -260,6 +264,9 @@ html, body, #editor, #app{
 }
 .markdown-body {
   padding: 1.5rem;
+  max-width: 1012px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .markdown-body ul {
   margin: 1em 0;
@@ -320,9 +327,12 @@ html, body, #editor, #app{
 .menu-item {
   flex: 1;
 }
-.slide {
+.slide-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.normal {
+  padding-top: 24px;
 }
 </style>
