@@ -282,6 +282,14 @@ html, body, #editor, #app{
 .markdown-body em {
     font-style: italic;
 }
+.markdown-body sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+.markdown-body sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
 .control-button {
   position: absolute;
   font-size: 2rem;
