@@ -1,0 +1,44 @@
+#flask {
+  color: #3E4349;
+}
+
+#flask .markdown-body,
+#flask p {
+  font-family: 'Georgia', serif;
+}
+
+#flask a {
+  color: #004B6B;
+  border-bottom: 1px dotted #004B6B;
+  text-decoration: none;
+}
+
+#flask h1,
+#flask h2,
+#flask h3,
+#flask h4,
+#flask h5,
+#flask h6 {
+  font-weight: 600;
+  font-family: 'Garamond', 'Georgia', serif;
+}
+
+#flask blockquote {
+  color: #5C6370;
+  font-style: italic;
+  border-left: 2px solid #5C6370;
+}
+
+#flask mark {
+  background-color: #ecf0f3;
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+}
+
+#flask dl dt {
+  font-weight: bold;
+  font-style: normal;
+}
+
+#flask dl dd {
+  margin-left: 30px;
+}

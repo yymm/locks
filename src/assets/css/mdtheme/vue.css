@@ -1,3 +1,22 @@
+#vue {
+  color: #34495e;
+}
+
+#vue .markdown-body,
+#vue p {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vue *::selection {
+  background-color: rgba(66,185,131,0.5);
+}
+
+#vue *::-moz-selection {
+  background-color: rgba(66,185,131,0.5);
+}
+
 #vue a {
   color: #42b983;
   font-weight: 600;
@@ -33,13 +52,6 @@
     bottom: -2px;
     font-size: 1.2em;
     font-weight: bold;
-}
-
-#vue {
-  color: #34495e;
-  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 #vscode-dark table,

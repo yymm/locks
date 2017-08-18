@@ -3,6 +3,10 @@
 #noto {
   color: #333;
   background: #eee;
+}
+
+#noto .markdown-body,
+#noto p {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
