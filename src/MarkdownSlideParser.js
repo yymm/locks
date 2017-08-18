@@ -7,7 +7,7 @@ import markdownItSup from 'markdown-it-sup'
 import markdownItIns from 'markdown-it-ins'
 import markdownItMark from 'markdown-it-mark'
 import markdownItContainer from 'markdown-it-container'
-import markdownItFootnote from 'markdown-it-footnote'
+//import markdownItFootnote from 'markdown-it-footnote'
 import markdownItDeflist from 'markdown-it-deflist'
 import markdownItBlockEmbed from 'markdown-it-block-embed'
 import markdownItImsize from 'markdown-it-imsize'
@@ -15,6 +15,7 @@ import markdownItTaskLists from 'markdown-it-task-lists'
 import markdownItPlayground from 'markdown-it-playground'
 import markdownItSmartarrows from 'markdown-it-smartarrows'
 import markdownItHighlightjs from 'markdown-it-highlightjs'
+import markdownItLinkAttr from 'markdown-it-link-attributes'
 
 let md = markdownIt({
     html: true,
@@ -29,8 +30,9 @@ let md = markdownIt({
   .use(markdownItSup)
   .use(markdownItIns)
   .use(markdownItMark)
-  .use(markdownItContainer)
-  .use(markdownItFootnote)
+  .use(markdownItContainer, 'warning')
+  .use(markdownItContainer, 'info')
+  //.use(markdownItFootnote)
   .use(markdownItDeflist)
   .use(markdownItBlockEmbed)
   .use(markdownItImsize)
@@ -38,6 +40,7 @@ let md = markdownIt({
   .use(markdownItPlayground)
   .use(markdownItSmartarrows)
   .use(markdownItHighlightjs)
+  .use(markdownItLinkAttr, { target: '_blank' })
 
 md.renderer.rules.hr = function() {
   return '</div><div class="slide-page" style="display: none;">'

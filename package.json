@@ -24,6 +24,7 @@
     "markdown-it-highlightjs": "^3.0.0",
     "markdown-it-imsize": "^2.0.1",
     "markdown-it-ins": "^2.0.0",
+    "markdown-it-link-attributes": "^1.0.0",
     "markdown-it-mark": "^2.0.0",
     "markdown-it-playground": "0.0.5",
     "markdown-it-smartarrows": "^1.0.1",
