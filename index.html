@@ -3,147 +3,147 @@
   <head>
     <meta charset="utf-8">
     <title>markdown-slide-editor.vue</title>
-    <link rel="stylesheet" href="./src/assets/css/reset.min.css">
-    <link rel="stylesheet" href="./src/assets/css/katex.min.css">
-    <link rel="stylesheet" href="./src/assets/css/github-markdown.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/default.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/vscode.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/vue.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/noto.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/flask.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/iceberg.css">
-    <link rel="stylesheet" hreflang="en" href="./src/assets/css/mdtheme/presentation.css">
+    <link rel="stylesheet" href="./dist/css/reset.min.css">
+    <link rel="stylesheet" href="./dist/css/katex.min.css">
+    <link rel="stylesheet" href="./dist/css/github-markdown.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/default.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/vscode.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/vue.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/noto.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/flask.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/iceberg.css">
+    <link rel="stylesheet" hreflang="en" href="./dist/css/markdown-theme/presentation.css">
 
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/abcdef.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/ambiance-mobile.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/ambiance.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/base16-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/base16-light.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/bespin.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/blackboard.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/cobalt.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/colorforth.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/dracula.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/duotone-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/duotone-light.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/eclipse.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/elegant.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/erlang-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/hopscotch.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/icecoder.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/isotope.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/lesser-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/liquibyte.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/material.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/mbo.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/mdn-like.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/midnight.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/neat.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/neo.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/night.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/panda-syntax.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/paraiso-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/paraiso-light.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/pastel-on-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/railscasts.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/rubyblue.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/seti.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/solarized.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/the-matrix.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/tomorrow-night-bright.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/tomorrow-night-eighties.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/ttcn.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/twilight.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/vibrant-ink.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/xq-dark.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/xq-light.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/yeti.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/zenburn.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/3024-day.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/3024-night.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/abcdef.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/ambiance-mobile.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/ambiance.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/base16-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/base16-light.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/bespin.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/blackboard.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/cobalt.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/colorforth.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/dracula.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/duotone-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/duotone-light.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/eclipse.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/elegant.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/erlang-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/hopscotch.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/icecoder.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/isotope.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/lesser-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/liquibyte.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/material.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/mbo.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/mdn-like.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/midnight.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/monokai.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/neat.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/neo.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/night.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/panda-syntax.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/paraiso-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/paraiso-light.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/pastel-on-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/railscasts.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/rubyblue.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/seti.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/solarized.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/the-matrix.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/tomorrow-night-bright.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/tomorrow-night-eighties.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/ttcn.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/twilight.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/vibrant-ink.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/xq-dark.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/xq-light.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/yeti.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/zenburn.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/3024-day.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/3024-night.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/theme/monokai.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/codemirror/addon/hint/show-hint.css">
 
-    <link rel="stylesheet" title="Default" href="./node_modules/highlight.js/styles/default.css">
-    <link rel="alternate stylesheet" title="Agate" href="./node_modules/highlight.js/styles/agate.css">
-    <link rel="alternate stylesheet" title="Androidstudio" href="./node_modules/highlight.js/styles/androidstudio.css">
-    <link rel="alternate stylesheet" title="Arduino Light" href="./node_modules/highlight.js/styles/arduino-light.css">
-    <link rel="alternate stylesheet" title="Arta" href="./node_modules/highlight.js/styles/arta.css">
-    <link rel="alternate stylesheet" title="Ascetic" href="./node_modules/highlight.js/styles/ascetic.css">
-    <link rel="alternate stylesheet" title="Atelier Cave Dark" href="./node_modules/highlight.js/styles/atelier-cave-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Cave Light" href="./node_modules/highlight.js/styles/atelier-cave-light.css">
-    <link rel="alternate stylesheet" title="Atelier Dune Dark" href="./node_modules/highlight.js/styles/atelier-dune-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Dune Light" href="./node_modules/highlight.js/styles/atelier-dune-light.css">
-    <link rel="alternate stylesheet" title="Atelier Estuary Dark" href="./node_modules/highlight.js/styles/atelier-estuary-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Estuary Light" href="./node_modules/highlight.js/styles/atelier-estuary-light.css">
-    <link rel="alternate stylesheet" title="Atelier Forest Dark" href="./node_modules/highlight.js/styles/atelier-forest-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Forest Light" href="./node_modules/highlight.js/styles/atelier-forest-light.css">
-    <link rel="alternate stylesheet" title="Atelier Heath Dark" href="./node_modules/highlight.js/styles/atelier-heath-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Heath Light" href="./node_modules/highlight.js/styles/atelier-heath-light.css">
-    <link rel="alternate stylesheet" title="Atelier Lakeside Dark" href="./node_modules/highlight.js/styles/atelier-lakeside-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Lakeside Light" href="./node_modules/highlight.js/styles/atelier-lakeside-light.css">
-    <link rel="alternate stylesheet" title="Atelier Plateau Dark" href="./node_modules/highlight.js/styles/atelier-plateau-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Plateau Light" href="./node_modules/highlight.js/styles/atelier-plateau-light.css">
-    <link rel="alternate stylesheet" title="Atelier Savanna Dark" href="./node_modules/highlight.js/styles/atelier-savanna-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Savanna Light" href="./node_modules/highlight.js/styles/atelier-savanna-light.css">
-    <link rel="alternate stylesheet" title="Atelier Seaside Dark" href="./node_modules/highlight.js/styles/atelier-seaside-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Seaside Light" href="./node_modules/highlight.js/styles/atelier-seaside-light.css">
-    <link rel="alternate stylesheet" title="Atelier Sulphurpool Dark" href="./node_modules/highlight.js/styles/atelier-sulphurpool-dark.css">
-    <link rel="alternate stylesheet" title="Atelier Sulphurpool Light" href="./node_modules/highlight.js/styles/atelier-sulphurpool-light.css">
-    <link rel="alternate stylesheet" title="Atom One Dark" href="./node_modules/highlight.js/styles/atom-one-dark.css">
-    <link rel="alternate stylesheet" title="Atom One Light" href="./node_modules/highlight.js/styles/atom-one-light.css">
-    <link rel="alternate stylesheet" title="Brown Paper" href="./node_modules/highlight.js/styles/brown-paper.css">
-    <link rel="alternate stylesheet" title="Codepen Embed" href="./node_modules/highlight.js/styles/codepen-embed.css">
-    <link rel="alternate stylesheet" title="Color Brewer" href="./node_modules/highlight.js/styles/color-brewer.css">
-    <link rel="alternate stylesheet" title="Darcula" href="./node_modules/highlight.js/styles/darcula.css">
-    <link rel="alternate stylesheet" title="Dark" href="./node_modules/highlight.js/styles/dark.css">
-    <link rel="alternate stylesheet" title="Darkula" href="./node_modules/highlight.js/styles/darkula.css">
-    <link rel="alternate stylesheet" title="Docco" href="./node_modules/highlight.js/styles/docco.css">
-    <link rel="alternate stylesheet" title="Dracula" href="./node_modules/highlight.js/styles/dracula.css">
-    <link rel="alternate stylesheet" title="Far" href="./node_modules/highlight.js/styles/far.css">
-    <link rel="alternate stylesheet" title="Foundation" href="./node_modules/highlight.js/styles/foundation.css">
-    <link rel="alternate stylesheet" title="Github Gist" href="./node_modules/highlight.js/styles/github-gist.css">
-    <link rel="alternate stylesheet" title="Github" href="./node_modules/highlight.js/styles/github.css">
-    <link rel="alternate stylesheet" title="Googlecode" href="./node_modules/highlight.js/styles/googlecode.css">
-    <link rel="alternate stylesheet" title="Grayscale" href="./node_modules/highlight.js/styles/grayscale.css">
-    <link rel="alternate stylesheet" title="Gruvbox Dark" href="./node_modules/highlight.js/styles/gruvbox-dark.css">
-    <link rel="alternate stylesheet" title="Gruvbox Light" href="./node_modules/highlight.js/styles/gruvbox-light.css">
-    <link rel="alternate stylesheet" title="Hopscotch" href="./node_modules/highlight.js/styles/hopscotch.css">
-    <link rel="alternate stylesheet" title="Hybrid" href="./node_modules/highlight.js/styles/hybrid.css">
-    <link rel="alternate stylesheet" title="Idea" href="./node_modules/highlight.js/styles/idea.css">
-    <link rel="alternate stylesheet" title="Ir Black" href="./node_modules/highlight.js/styles/ir-black.css">
-    <link rel="alternate stylesheet" title="Magula" href="./node_modules/highlight.js/styles/magula.css">
-    <link rel="alternate stylesheet" title="Mono Blue" href="./node_modules/highlight.js/styles/mono-blue.css">
-    <link rel="alternate stylesheet" title="Monokai Sublime" href="./node_modules/highlight.js/styles/monokai-sublime.css">
-    <link rel="alternate stylesheet" title="Monokai" href="./node_modules/highlight.js/styles/monokai.css">
-    <link rel="alternate stylesheet" title="Obsidian" href="./node_modules/highlight.js/styles/obsidian.css">
-    <link rel="alternate stylesheet" title="Ocean" href="./node_modules/highlight.js/styles/ocean.css">
-    <link rel="alternate stylesheet" title="Paraiso Dark" href="./node_modules/highlight.js/styles/paraiso-dark.css">
-    <link rel="alternate stylesheet" title="Paraiso Light" href="./node_modules/highlight.js/styles/paraiso-light.css">
-    <link rel="alternate stylesheet" title="Pojoaque" href="./node_modules/highlight.js/styles/pojoaque.css">
-    <link rel="alternate stylesheet" title="Purebasic" href="./node_modules/highlight.js/styles/purebasic.css">
-    <link rel="alternate stylesheet" title="Qtcreator Dark" href="./node_modules/highlight.js/styles/qtcreator_dark.css">
-    <link rel="alternate stylesheet" title="Qtcreator Light" href="./node_modules/highlight.js/styles/qtcreator_light.css">
-    <link rel="alternate stylesheet" title="Railscasts" href="./node_modules/highlight.js/styles/railscasts.css">
-    <link rel="alternate stylesheet" title="Rainbow" href="./node_modules/highlight.js/styles/rainbow.css">
-    <link rel="alternate stylesheet" title="Routeros" href="./node_modules/highlight.js/styles/routeros.css">
-    <link rel="alternate stylesheet" title="School Book" href="./node_modules/highlight.js/styles/school-book.css">
-    <link rel="alternate stylesheet" title="Solarized Dark" href="./node_modules/highlight.js/styles/solarized-dark.css">
-    <link rel="alternate stylesheet" title="Solarized Light" href="./node_modules/highlight.js/styles/solarized-light.css">
-    <link rel="alternate stylesheet" title="Sunburst" href="./node_modules/highlight.js/styles/sunburst.css">
-    <link rel="alternate stylesheet" title="Tomorrow Night Blue" href="./node_modules/highlight.js/styles/tomorrow-night-blue.css">
-    <link rel="alternate stylesheet" title="Tomorrow Night Bright" href="./node_modules/highlight.js/styles/tomorrow-night-bright.css">
-    <link rel="alternate stylesheet" title="Tomorrow Night Eighties" href="./node_modules/highlight.js/styles/tomorrow-night-eighties.css">
-    <link rel="alternate stylesheet" title="Tomorrow Night" href="./node_modules/highlight.js/styles/tomorrow-night.css">
-    <link rel="alternate stylesheet" title="Tomorrow" href="./node_modules/highlight.js/styles/tomorrow.css">
-    <link rel="alternate stylesheet" title="Vs" href="./node_modules/highlight.js/styles/vs.css">
-    <link rel="alternate stylesheet" title="Vs 2015" href="./node_modules/highlight.js/styles/vs2015.css">
-    <link rel="alternate stylesheet" title="Xcode" href="./node_modules/highlight.js/styles/xcode.css">
-    <link rel="alternate stylesheet" title="Xt 256" href="./node_modules/highlight.js/styles/xt256.css">
-    <link rel="alternate stylesheet" title="Zenburn" href="./node_modules/highlight.js/styles/zenburn.css">
+    <link rel="stylesheet" title="Default" href="./dist/css/highlightjs/default.css">
+    <link rel="alternate stylesheet" title="Agate" href="./dist/css/highlightjs/agate.css">
+    <link rel="alternate stylesheet" title="Androidstudio" href="./dist/css/highlightjs/androidstudio.css">
+    <link rel="alternate stylesheet" title="Arduino Light" href="./dist/css/highlightjs/arduino-light.css">
+    <link rel="alternate stylesheet" title="Arta" href="./dist/css/highlightjs/arta.css">
+    <link rel="alternate stylesheet" title="Ascetic" href="./dist/css/highlightjs/ascetic.css">
+    <link rel="alternate stylesheet" title="Atelier Cave Dark" href="./dist/css/highlightjs/atelier-cave-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Cave Light" href="./dist/css/highlightjs/atelier-cave-light.css">
+    <link rel="alternate stylesheet" title="Atelier Dune Dark" href="./dist/css/highlightjs/atelier-dune-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Dune Light" href="./dist/css/highlightjs/atelier-dune-light.css">
+    <link rel="alternate stylesheet" title="Atelier Estuary Dark" href="./dist/css/highlightjs/atelier-estuary-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Estuary Light" href="./dist/css/highlightjs/atelier-estuary-light.css">
+    <link rel="alternate stylesheet" title="Atelier Forest Dark" href="./dist/css/highlightjs/atelier-forest-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Forest Light" href="./dist/css/highlightjs/atelier-forest-light.css">
+    <link rel="alternate stylesheet" title="Atelier Heath Dark" href="./dist/css/highlightjs/atelier-heath-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Heath Light" href="./dist/css/highlightjs/atelier-heath-light.css">
+    <link rel="alternate stylesheet" title="Atelier Lakeside Dark" href="./dist/css/highlightjs/atelier-lakeside-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Lakeside Light" href="./dist/css/highlightjs/atelier-lakeside-light.css">
+    <link rel="alternate stylesheet" title="Atelier Plateau Dark" href="./dist/css/highlightjs/atelier-plateau-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Plateau Light" href="./dist/css/highlightjs/atelier-plateau-light.css">
+    <link rel="alternate stylesheet" title="Atelier Savanna Dark" href="./dist/css/highlightjs/atelier-savanna-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Savanna Light" href="./dist/css/highlightjs/atelier-savanna-light.css">
+    <link rel="alternate stylesheet" title="Atelier Seaside Dark" href="./dist/css/highlightjs/atelier-seaside-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Seaside Light" href="./dist/css/highlightjs/atelier-seaside-light.css">
+    <link rel="alternate stylesheet" title="Atelier Sulphurpool Dark" href="./dist/css/highlightjs/atelier-sulphurpool-dark.css">
+    <link rel="alternate stylesheet" title="Atelier Sulphurpool Light" href="./dist/css/highlightjs/atelier-sulphurpool-light.css">
+    <link rel="alternate stylesheet" title="Atom One Dark" href="./dist/css/highlightjs/atom-one-dark.css">
+    <link rel="alternate stylesheet" title="Atom One Light" href="./dist/css/highlightjs/atom-one-light.css">
+    <link rel="alternate stylesheet" title="Brown Paper" href="./dist/css/highlightjs/brown-paper.css">
+    <link rel="alternate stylesheet" title="Codepen Embed" href="./dist/css/highlightjs/codepen-embed.css">
+    <link rel="alternate stylesheet" title="Color Brewer" href="./dist/css/highlightjs/color-brewer.css">
+    <link rel="alternate stylesheet" title="Darcula" href="./dist/css/highlightjs/darcula.css">
+    <link rel="alternate stylesheet" title="Dark" href="./dist/css/highlightjs/dark.css">
+    <link rel="alternate stylesheet" title="Darkula" href="./dist/css/highlightjs/darkula.css">
+    <link rel="alternate stylesheet" title="Docco" href="./dist/css/highlightjs/docco.css">
+    <link rel="alternate stylesheet" title="Dracula" href="./dist/css/highlightjs/dracula.css">
+    <link rel="alternate stylesheet" title="Far" href="./dist/css/highlightjs/far.css">
+    <link rel="alternate stylesheet" title="Foundation" href="./dist/css/highlightjs/foundation.css">
+    <link rel="alternate stylesheet" title="Github Gist" href="./dist/css/highlightjs/github-gist.css">
+    <link rel="alternate stylesheet" title="Github" href="./dist/css/highlightjs/github.css">
+    <link rel="alternate stylesheet" title="Googlecode" href="./dist/css/highlightjs/googlecode.css">
+    <link rel="alternate stylesheet" title="Grayscale" href="./dist/css/highlightjs/grayscale.css">
+    <link rel="alternate stylesheet" title="Gruvbox Dark" href="./dist/css/highlightjs/gruvbox-dark.css">
+    <link rel="alternate stylesheet" title="Gruvbox Light" href="./dist/css/highlightjs/gruvbox-light.css">
+    <link rel="alternate stylesheet" title="Hopscotch" href="./dist/css/highlightjs/hopscotch.css">
+    <link rel="alternate stylesheet" title="Hybrid" href="./dist/css/highlightjs/hybrid.css">
+    <link rel="alternate stylesheet" title="Idea" href="./dist/css/highlightjs/idea.css">
+    <link rel="alternate stylesheet" title="Ir Black" href="./dist/css/highlightjs/ir-black.css">
+    <link rel="alternate stylesheet" title="Magula" href="./dist/css/highlightjs/magula.css">
+    <link rel="alternate stylesheet" title="Mono Blue" href="./dist/css/highlightjs/mono-blue.css">
+    <link rel="alternate stylesheet" title="Monokai Sublime" href="./dist/css/highlightjs/monokai-sublime.css">
+    <link rel="alternate stylesheet" title="Monokai" href="./dist/css/highlightjs/monokai.css">
+    <link rel="alternate stylesheet" title="Obsidian" href="./dist/css/highlightjs/obsidian.css">
+    <link rel="alternate stylesheet" title="Ocean" href="./dist/css/highlightjs/ocean.css">
+    <link rel="alternate stylesheet" title="Paraiso Dark" href="./dist/css/highlightjs/paraiso-dark.css">
+    <link rel="alternate stylesheet" title="Paraiso Light" href="./dist/css/highlightjs/paraiso-light.css">
+    <link rel="alternate stylesheet" title="Pojoaque" href="./dist/css/highlightjs/pojoaque.css">
+    <link rel="alternate stylesheet" title="Purebasic" href="./dist/css/highlightjs/purebasic.css">
+    <link rel="alternate stylesheet" title="Qtcreator Dark" href="./dist/css/highlightjs/qtcreator_dark.css">
+    <link rel="alternate stylesheet" title="Qtcreator Light" href="./dist/css/highlightjs/qtcreator_light.css">
+    <link rel="alternate stylesheet" title="Railscasts" href="./dist/css/highlightjs/railscasts.css">
+    <link rel="alternate stylesheet" title="Rainbow" href="./dist/css/highlightjs/rainbow.css">
+    <link rel="alternate stylesheet" title="Routeros" href="./dist/css/highlightjs/routeros.css">
+    <link rel="alternate stylesheet" title="School Book" href="./dist/css/highlightjs/school-book.css">
+    <link rel="alternate stylesheet" title="Solarized Dark" href="./dist/css/highlightjs/solarized-dark.css">
+    <link rel="alternate stylesheet" title="Solarized Light" href="./dist/css/highlightjs/solarized-light.css">
+    <link rel="alternate stylesheet" title="Sunburst" href="./dist/css/highlightjs/sunburst.css">
+    <link rel="alternate stylesheet" title="Tomorrow Night Blue" href="./dist/css/highlightjs/tomorrow-night-blue.css">
+    <link rel="alternate stylesheet" title="Tomorrow Night Bright" href="./dist/css/highlightjs/tomorrow-night-bright.css">
+    <link rel="alternate stylesheet" title="Tomorrow Night Eighties" href="./dist/css/highlightjs/tomorrow-night-eighties.css">
+    <link rel="alternate stylesheet" title="Tomorrow Night" href="./dist/css/highlightjs/tomorrow-night.css">
+    <link rel="alternate stylesheet" title="Tomorrow" href="./dist/css/highlightjs/tomorrow.css">
+    <link rel="alternate stylesheet" title="Vs" href="./dist/css/highlightjs/vs.css">
+    <link rel="alternate stylesheet" title="Vs 2015" href="./dist/css/highlightjs/vs2015.css">
+    <link rel="alternate stylesheet" title="Xcode" href="./dist/css/highlightjs/xcode.css">
+    <link rel="alternate stylesheet" title="Xt 256" href="./dist/css/highlightjs/xt256.css">
+    <link rel="alternate stylesheet" title="Zenburn" href="./dist/css/highlightjs/zenburn.css">
   </head>
   <body>
     <div id="app"></div>

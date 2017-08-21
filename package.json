@@ -1,7 +1,7 @@
 {
-  "name": "markdown-slide-editor.vue",
-  "description": "A Vue.js project",
-  "version": "1.0.0",
+  "name": "locks",
+  "description": "Private Rich Markdown Slide Editor based Localstorage",
+  "version": "0.1.0",
   "author": "yuya yano <yuya.yano.6260@gmail.com>",
   "private": true,
   "scripts": {
