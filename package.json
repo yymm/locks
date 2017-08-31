@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "ln -s ../docs/css ./dist/css && cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "deploy": "npm run build && cp -r docs/css dist/ && ls -la dist/ && python -m SimpleHTTPServer $PORT",
+    "deploy": "cp docs/build* dist/ && cp -r docs/css dist/ && ls -la dist/ && python -m SimpleHTTPServer $PORT",
     "docs": "cp dist/build* docs/ && cp index.html docs/ && sed -i'.bak' -e 's|dist/||g' docs/index.html"
   },
   "dependencies": {
