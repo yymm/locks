@@ -1,0 +1,69 @@
+#locks {
+  color: #263238;
+}
+
+#locks .markdown-body,
+#locks p {
+  font-family: 'Quantico', sans-serif;
+}
+
+#locks a {
+  color: #708f9e;
+}
+
+#locks h1,
+#locks h2,
+#locks h3,
+#locks h4,
+#locks h5,
+#locks h6 {
+  font-weight: 600;
+}
+
+#locks h1,
+#locks h2 {
+  border-bottom: 1px solid #708f9e;
+}
+
+#locks h3,
+#locks h4,
+#locks h5,
+#locks h6 {
+  position: relative;
+  margin: 52px 0 1.2em;
+  border: none;
+}
+
+#locks blockquote {
+  margin: 2em 0;
+  padding-left: 20px;
+  border-left: 4px solid #61cafc;
+}
+
+#locks blockquote p {
+  font-weight: 600;
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#locks mark {
+  font-size: 0.8em;
+  font-weight: 600;
+  padding: 3px 5px;
+  margin: 0 2px;
+  border-radius: 2px;
+  white-space: nowrap;
+  background: #049be3;
+  color: #eee;
+}
+
+#locks dl dt {
+  color: #049be3;
+  font-weight: bold;
+  font-style: normal;
+}
+
+#locks dl dd {
+  color: #708f9e;
+}

@@ -1,14 +1,12 @@
 <template>
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
-    <!--<div :id="selectedMdTheme" class="markdown-body preview" :class="selectedMode === 'slide' ? 'slide' : ''" v-html="parsed">-->
     <div :id="selectedMdTheme" class="preview" :class="selectedMode">
-      <div class="markdown-body" v-html="parsed">
-      </div>
+      <div class="markdown-body" v-html="parsed"></div>
     </div>
     <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
     <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
-    <div class="current-page" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
+    <div class="current-page-index" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
     <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
     <div class="menu" :style="{ display: showEditor }">
       <div class="menu-item">
@@ -41,8 +39,8 @@
 <script>
 import CodeMirror from 'codemirror'
 import axios from 'axios'
-import MdParser from './MarkdownParser'
-import MdSlideParser from './MarkdownSlideParser'
+import MdParser from './Parser/MarkdownParser'
+import MdSlideParser from './Parser/MarkdownSlideParser'
 require('../node_modules/codemirror/mode/markdown/markdown')
 require('../node_modules/codemirror/mode/gfm/gfm')
 require('../node_modules/codemirror/mode/javascript/javascript')
@@ -60,8 +58,13 @@ require('../node_modules/codemirror/mode/clike/clike')
 require('../node_modules/codemirror/keymap/vim')
 require('../node_modules/codemirror/keymap/emacs')
 require('../node_modules/codemirror/keymap/sublime')
+require('../node_modules/codemirror/addon/fold/foldcode.js')
+require('../node_modules/codemirror/addon/fold/foldgutter.js')
+require('../node_modules/codemirror/addon/fold/markdown-fold.js')
+require('../node_modules/codemirror/addon/fold/brace-fold.js')
 require('./assets/show-hint-for-emoji.js')
 require('./assets/ASCIIMathTeXImg.js')
+
 export default {
   name: 'app',
   data () {
@@ -78,7 +81,8 @@ export default {
       selectedHljsStyle: 'Default',
       highlightjsStyles: [],
       selectedMdTheme: 'default',
-      mdThemes: []
+      mdThemes: [],
+      overwrapMode: false
     }
   },
   computed: {
@@ -190,7 +194,9 @@ export default {
       mode: 'gfm',
       value: storage ? storage.text : '',
       theme: storage ? storage.options.cmTheme : this.selectedCmTheme,
-      lineNumbers: true
+      lineNumbers: true,
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
     })
 
     //
@@ -210,7 +216,7 @@ export default {
     let emojiComplete = function(cm) {
       // Save localStorage at editing everytime
       this.saveLocalstorage()
-      // Hinet
+      // Emoji complete
       CodeMirror.showHint(cm, function() {
         let cur = cm.getCursor(), token = cm.getTokenAt(cur)
         let start = token.start, end = cur.ch, word = token.string.slice(0, end - start)
@@ -242,7 +248,7 @@ export default {
 </script>
 
 <style>
-html, body, #editor, #app{
+html, body, #editor, #app {
   height: 100%;
 }
 #editor {
@@ -268,28 +274,6 @@ html, body, #editor, #app{
   margin-right: auto;
   margin-left: auto;
 }
-.markdown-body ul {
-  margin: 1em 0;
-  padding-left: 2em;
-  list-style-type: disc;
-}
-.markdown-body ol {
-  margin: 1em 0;
-  padding-left: 2em;
-  list-style-type: decimal;
-}
-.markdown-body i,
-.markdown-body em {
-    font-style: italic;
-}
-.markdown-body sup {
-    vertical-align: super;
-    font-size: smaller;
-}
-.markdown-body sub {
-    vertical-align: sub;
-    font-size: smaller;
-}
 .control-button {
   position: absolute;
   font-size: 2rem;
@@ -306,7 +290,7 @@ html, body, #editor, #app{
   bottom: 20px;
   right: 10px;
 }
-.current-page {
+.current-page-index {
   position: absolute;
   font-size: 0.8rem;
   color: #222;

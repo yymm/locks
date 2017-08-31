@@ -1,13 +1,14 @@
 {
   "name": "locks",
-  "description": "Private Rich Markdown Slide Editor based Localstorage",
+  "description": "LocalStoraged & Rich Markdown Slide Editor.",
   "version": "0.1.0",
   "author": "yuya yano <yuya.yano.6260@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "deploy": "python -m SimpleHTTPServer $PORT"
+    "deploy": "npm run build && cp -r docs/css dist/ && python -m SimpleHTTPServer $PORT",
+    "docs": "cp dist/build* docs/"
   },
   "dependencies": {
     "axios": "^0.16.2",

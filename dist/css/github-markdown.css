@@ -691,3 +691,30 @@
 .markdown-body hr {
   border-bottom-color: #eee;
 }
+
+.markdown-body ul {
+  margin: 1em 0;
+  padding-left: 2em;
+  list-style-type: disc;
+}
+
+.markdown-body ol {
+  margin: 1em 0;
+  padding-left: 2em;
+  list-style-type: decimal;
+}
+
+.markdown-body i,
+.markdown-body em {
+    font-style: italic;
+}
+
+.markdown-body sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+.markdown-body sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
