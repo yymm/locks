@@ -27107,6 +27107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -27233,7 +27236,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var mode = [{ text: 'slide' }, { text: 'slide (centering)' }, { text: 'normal (simple markdown)' }, { text: 'Fullscreen available all mode' }];
 var editor = [{ text: 'powerd by CodeMirror', link: 'https://codemirror.net/' }, { text: 'GFM' }, { text: 'auto save (also theme & mode)' }, { text: 'realtime preview' }, { text: 'fenced code highlighting' }, { text: 'emoji complete' }, { text: 'mode (vim/emacs/sublime)' }, { text: 'folding' }];
 var parser = [{ text: 'powered by MarkdownIt', link: 'https://github.com/markdown-it/markdown-it' }, { text: 'markdown-it-emoji', link: 'https://www.npmjs.com/package/markdown-it-emoji' }, { text: 'markdown-it-asciimath', link: 'https://www.npmjs.com/package/markdown-it-asciimath' }, { text: 'markdown-it-highlightjs', link: 'https://www.npmjs.com/package/markdown-it-highlightjs' }, { text: 'markdown-it-sub', link: 'https://www.npmjs.com/package/markdown-it-sub' }, { text: 'markdown-it-sup', link: 'https://www.npmjs.com/package/markdown-it-sup' }, { text: 'markdown-it-ins', link: 'https://www.npmjs.com/package/markdown-it-ins' }, { text: 'markdown-it-mark', link: 'https://www.npmjs.com/package/markdown-it-mark' }, { text: 'markdown-it-deflist', link: 'https://www.npmjs.com/package/markdown-it-deflist' }, { text: 'markdown-it-container', link: 'https://www.npmjs.com/package/markdown-it-container' }, { text: 'markdown-it-block-embed', link: 'https://www.npmjs.com/package/markdown-it-block-embed' }, { text: 'markdown-it-imsize', link: 'https://www.npmjs.com/package/markdown-it-imsize' }, { text: 'markdown-it-task-lists', link: 'https://www.npmjs.com/package/markdown-it-task-lists' }, { text: 'markdown-it-playground', link: 'https://www.npmjs.com/package/markdown-it-playground' }, { text: 'markdown-it-smartarrows', link: 'https://www.npmjs.com/package/markdown-it-smartarrows' }, { text: 'markdown-it-link-attributes', link: 'https://www.npmjs.com/package/markdown-it-link-attributes' }];
-var theme = [{ text: 'default (github)' }, { text: 'flask', link: 'http://flask.pocoo.org/' }, { text: 'iceberg', link: 'http://cocopon.me/app/vim-iceberg/' }, { text: 'mplus1', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' }, { text: 'nikukyu-nico', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' }, { text: 'noto', link: 'https://www.google.com/get/noto/' }, { text: 'presentation' }, { text: 'sawarabi', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' }, { text: 'vscode', link: 'https://github.com/raycon/vscode-markdown-css' }, { text: 'vue', link: 'https://jp.vuejs.org/index.html' }];
+var theme = [{ text: 'default (github)' }, { text: 'flask', link: 'http://flask.pocoo.org/' }, { text: 'iceberg', link: 'http://cocopon.me/app/vim-iceberg/' }, { text: 'noto', link: 'https://www.google.com/get/noto/' }, { text: 'presentation' }, { text: 'vscode', link: 'https://github.com/raycon/vscode-markdown-css' }, { text: 'vue', link: 'https://jp.vuejs.org/index.html' }, { text: 'locks' }];
 var todo = [{ text: 'Feat: Sync other device', done: false }, { text: 'Feat: Generate public link', done: false }, { text: 'Feat: Generate raw html', done: false }];
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -45059,7 +45062,7 @@ exports = module.exports = __webpack_require__(51)();
 
 
 // module
-exports.push([module.i, "#home[data-v-61423742]{font-family:Quantico,sans-serif;color:#263238}.workspace[data-v-61423742]{position:relative;display:flex;flex-flow:row wrap;justify-content:center;align-content:flex-start;width:1200px;min-width:1200px;height:auto;min-height:250px;margin:auto;padding-top:30px}.setting[data-v-61423742]{display:flex;justify-content:center;height:100px;min-height:100px}.item[data-v-61423742]{position:relative;background:#049be3;width:400px;height:87px;padding:20px;margin:20px 50px;box-sizing:border-box;overflow:hidden}.item a[data-v-61423742]{text-decoration:none}.datetime[data-v-61423742]{position:absolute;top:10px;left:10px;color:#eee;font-size:18px}.shorthand[data-v-61423742]{position:absolute;top:35px;left:15px;font-size:24px;color:#263238;max-width:310px}.size[data-v-61423742]{position:absolute;top:10px;right:10px;font-size:12px;color:#9be304}.delete-button[data-v-61423742]{color:#eee;background:#263238;position:absolute;bottom:0;right:0;padding:10px}.delete-button[data-v-61423742]:hover{background:#37474f;color:#fff}", ""]);
+exports.push([module.i, "#home[data-v-61423742]{font-family:Quantico,sans-serif;color:#263238}.workspace[data-v-61423742]{position:relative;display:flex;flex-flow:row wrap;justify-content:center;align-content:flex-start;width:1200px;min-width:1200px;height:auto;min-height:250px;margin:auto;padding-top:30px}.setting[data-v-61423742]{display:flex;justify-content:center;height:100px;min-height:100px}.item[data-v-61423742]{position:relative;background:#049be3;width:400px;height:87px;padding:20px;margin:20px 50px;box-sizing:border-box;overflow:hidden}.empty[data-v-61423742]{padding-top:85px;font-size:64px;color:#c2cfd6}.item a[data-v-61423742]{text-decoration:none}.datetime[data-v-61423742]{position:absolute;top:10px;left:10px;color:#eee;font-size:18px}.shorthand[data-v-61423742]{position:absolute;top:35px;left:15px;font-size:24px;color:#263238;max-width:310px}.size[data-v-61423742]{position:absolute;top:10px;right:10px;font-size:12px;color:#9be304}.delete-button[data-v-61423742]{color:#eee;background:#263238;position:absolute;bottom:0;right:0;padding:10px}.delete-button[data-v-61423742]:hover{background:#37474f;color:#fff}", ""]);
 
 // exports
 
@@ -79973,7 +79976,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "workspace"
-  }, _vm._l((_vm.data), function(value, index) {
+  }, [(_vm.data.length === 0) ? _c('div', {
+    staticClass: "empty"
+  }, [_vm._v("\n      No Data...\n    ")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.data), function(value, index) {
     return _c('div', {
       staticClass: "item"
     }, [_c('router-link', {
@@ -79994,7 +79999,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v("delete")])], 1)
-  })), _vm._v(" "), _c('feature-components'), _vm._v(" "), _c('footer-components')], 1)
+  })], 2), _vm._v(" "), _c('feature-components'), _vm._v(" "), _c('footer-components')], 1)
 },staticRenderFns: []}
 
 /***/ }),

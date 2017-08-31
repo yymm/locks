@@ -88,13 +88,11 @@ let theme = [
   { text: 'default (github)' },
   { text: 'flask', link: 'http://flask.pocoo.org/' },
   { text: 'iceberg', link: 'http://cocopon.me/app/vim-iceberg/' },
-  { text: 'mplus1', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' },
-  { text: 'nikukyu-nico', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' },
   { text: 'noto', link: 'https://www.google.com/get/noto/' },
   { text: 'presentation' },
-  { text: 'sawarabi', link: 'https://googlefonts.github.io/japanese/#notosansjapanese' },
   { text: 'vscode', link: 'https://github.com/raycon/vscode-markdown-css' },
   { text: 'vue', link: 'https://jp.vuejs.org/index.html' },
+  { text: 'locks' },
 ]
 let todo = [
   { text: 'Feat: Sync other device', done: false },

@@ -2,6 +2,9 @@
   <div id="home">
     <header-components :data="data" :sum="sum" v-on:new-page="newPage"></header-components>
     <div class='workspace'>
+      <div class="empty" v-if="data.length === 0">
+        No Data...
+      </div>
       <div class='item' v-for='(value, index) in data'>
         <router-link :to="value.datetime">
           <span class='datetime'>{{ value.datetime }}</span>
@@ -119,7 +122,9 @@ export default {
   overflow: hidden;
 }
 .empty {
-
+  padding-top: 85px;
+  font-size: 64px;
+  color: #c2cfd6;
 }
 .item a {
   text-decoration: none;

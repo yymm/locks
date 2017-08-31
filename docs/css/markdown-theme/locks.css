@@ -17,12 +17,13 @@
 #locks h4,
 #locks h5,
 #locks h6 {
+  color: #049be3;
   font-weight: 600;
 }
 
 #locks h1,
 #locks h2 {
-  border-bottom: 1px solid #708f9e;
+  border-bottom: 2px solid #049be3;
 }
 
 #locks h3,
