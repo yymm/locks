@@ -44,14 +44,19 @@
         </div>
         <div class="item">
           <h3>Themes</h3>
-          <ul><li v-for="v in theme">
-            <span v-if="v.link"><a target="_blank" :href="v.link">{{ v.text }}</a></span>
-            <span v-else>{{ v.text }}</span>
-          </li></ul>
+          <ul>
+            <li><a target="_blank" class="alt-a-tag" href="https://github.com/codemirror/CodeMirror/tree/master/theme"><b>48</b> Editor Themes</a></li>
+            <li><a target="_blank" class="alt-a-tag" href="https://github.com/isagalaev/highlight.js/tree/master/src/styles"><b>82</b> Code Block Highlight Themes</a></li>
+            <li><b>8</b> Markdown Themes</li>
+            <ul style="margin: 2px 0; padding-left: 25px;"><li v-for="v in theme">
+              <span v-if="v.link"><a target="_blank" :href="v.link">{{ v.text }}</a></span>
+              <span v-else>{{ v.text }}</span>
+            </li></ul>
+          </ul>
         </div>
       </div>
       <div class="contents">
-        <div class="item">
+        <div class="item" style="padding-left: 40px;">
           <h3>TODO</h3>
           <ul style="list-style-type: none;"><li v-for="v in todo">
             <span><input type="checkbox" v-model="v.done" disabled></input>{{ v.text }}</span>
@@ -175,11 +180,20 @@ a {
 a:hover {
   color: #61cafc;
 }
+b {
+  font-weight: 600;
+}
 .localstoraged-ul {
   margin: 0.3em 0 0.6em;
   padding-left: 0.5em;
 }
 .localstoraged-ul li {
   list-style-type: none;
+}
+.alt-a-tag {
+  color: #263238;
+}
+.alt-a-tag:hover {
+  color: #708f9e;
 }
 </style>

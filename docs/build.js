@@ -28466,6 +28466,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 var mode = [{ text: 'slide' }, { text: 'slide (centering)' }, { text: 'normal (simple markdown)' }, { text: 'Fullscreen available all mode' }];
 var editor = [{ text: 'powerd by CodeMirror', link: 'https://codemirror.net/' }, { text: 'GFM' }, { text: 'auto save (also theme & mode)' }, { text: 'realtime preview' }, { text: 'fenced code highlighting' }, { text: 'emoji complete' }, { text: 'mode (vim/emacs/sublime)' }, { text: 'folding' }];
@@ -45405,7 +45410,7 @@ exports = module.exports = __webpack_require__(36)();
 
 
 // module
-exports.push([module.i, ".feature[data-v-0220f31c]{position:relative;width:900px;min-width:900px;height:auto;min-height:300px;padding-top:100px;margin:auto}.title[data-v-0220f31c]{display:flex;justify-content:center}.container[data-v-0220f31c]{display:flex;flex-direction:column;align-items:center}.contents[data-v-0220f31c]{display:flex;flex-flow:row}.item[data-v-0220f31c]{width:300px;min-width:300px;margin:auto;padding:30px 20px 0 100px}h3[data-v-0220f31c]{font-size:24px;padding-bottom:4px;border-bottom:1px solid #263238}ul[data-v-0220f31c]{margin:1em 0;padding-left:2em;list-style-type:disc}li[data-v-0220f31c]{padding-bottom:3px}a[data-v-0220f31c]{text-decoration:none;color:#708f9e}a[data-v-0220f31c]:hover{color:#61cafc}.localstoraged-ul[data-v-0220f31c]{margin:.3em 0 .6em;padding-left:.5em}.localstoraged-ul li[data-v-0220f31c]{list-style-type:none}", ""]);
+exports.push([module.i, ".feature[data-v-0220f31c]{position:relative;width:900px;min-width:900px;height:auto;min-height:300px;padding-top:100px;margin:auto}.title[data-v-0220f31c]{display:flex;justify-content:center}.container[data-v-0220f31c]{display:flex;flex-direction:column;align-items:center}.contents[data-v-0220f31c]{display:flex;flex-flow:row}.item[data-v-0220f31c]{width:300px;min-width:300px;margin:auto;padding:30px 20px 0 100px}h3[data-v-0220f31c]{font-size:24px;padding-bottom:4px;border-bottom:1px solid #263238}ul[data-v-0220f31c]{margin:1em 0;padding-left:2em;list-style-type:disc}li[data-v-0220f31c]{padding-bottom:3px}a[data-v-0220f31c]{text-decoration:none;color:#708f9e}a[data-v-0220f31c]:hover{color:#61cafc}b[data-v-0220f31c]{font-weight:600}.localstoraged-ul[data-v-0220f31c]{margin:.3em 0 .6em;padding-left:.5em}.localstoraged-ul li[data-v-0220f31c]{list-style-type:none}.alt-a-tag[data-v-0220f31c]{color:#263238}.alt-a-tag[data-v-0220f31c]:hover{color:#708f9e}", ""]);
 
 // exports
 
@@ -80125,17 +80130,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(v.text))])]) : _c('span', [_vm._v(_vm._s(v.text))])])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "item"
-  }, [_c('h3', [_vm._v("Themes")]), _vm._v(" "), _c('ul', _vm._l((_vm.theme), function(v) {
+  }, [_c('h3', [_vm._v("Themes")]), _vm._v(" "), _c('ul', [_vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c('ul', {
+    staticStyle: {
+      "margin": "2px 0",
+      "padding-left": "25px"
+    }
+  }, _vm._l((_vm.theme), function(v) {
     return _c('li', [(v.link) ? _c('span', [_c('a', {
       attrs: {
         "target": "_blank",
         "href": v.link
       }
     }, [_vm._v(_vm._s(v.text))])]) : _c('span', [_vm._v(_vm._s(v.text))])])
-  }))])]), _vm._v(" "), _c('div', {
+  }))])])]), _vm._v(" "), _c('div', {
     staticClass: "contents"
   }, [_c('div', {
-    staticClass: "item"
+    staticClass: "item",
+    staticStyle: {
+      "padding-left": "40px"
+    }
   }, [_c('h3', [_vm._v("TODO")]), _vm._v(" "), _c('ul', {
     staticStyle: {
       "list-style-type": "none"
@@ -80224,6 +80237,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Fast")]), _c('ul', {
     staticClass: "localstoraged-ul"
   }, [_c('li', [_c('span', [_vm._v("Less network communication.")])])])])])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_c('a', {
+    staticClass: "alt-a-tag",
+    attrs: {
+      "target": "_blank",
+      "href": "https://github.com/codemirror/CodeMirror/tree/master/theme"
+    }
+  }, [_c('b', [_vm._v("48")]), _vm._v(" Editor Themes")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_c('a', {
+    staticClass: "alt-a-tag",
+    attrs: {
+      "target": "_blank",
+      "href": "https://github.com/isagalaev/highlight.js/tree/master/src/styles"
+    }
+  }, [_c('b', [_vm._v("82")]), _vm._v(" Code Block Highlight Themes")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_c('b', [_vm._v("8")]), _vm._v(" Markdown Themes")])
 }]}
 
 /***/ }),

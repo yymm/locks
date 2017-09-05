@@ -9,6 +9,11 @@
 
 #locks a {
   color: #708f9e;
+  text-decoration: none;
+}
+
+#locks a:hover {
+  color: #61cafc;
 }
 
 #locks h1,
