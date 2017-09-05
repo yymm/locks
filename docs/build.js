@@ -28629,14 +28629,11 @@ var LZString = __webpack_require__(121);
       }
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     var raw_data = this.$router.currentRoute.path.split('/').pop();
     console.log(raw_data);
-    // let data = LZString.decompress(raw_data)
     var data = LZString.decompressFromEncodedURIComponent(raw_data);
     data = JSON.parse(data);
-    console.log(data);
-    console.log(data.mode);
     this.text = data.text;
     this.selectedMode = data.options.mode;
     this.selectedMdTheme = data.options.mdTheme;

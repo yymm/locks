@@ -36,14 +36,11 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     let raw_data = this.$router.currentRoute.path.split('/').pop()
     console.log(raw_data)
-    // let data = LZString.decompress(raw_data)
     let data = LZString.decompressFromEncodedURIComponent(raw_data)
     data = JSON.parse(data)
-    console.log(data)
-    console.log(data.mode)
     this.text = data.text
     this.selectedMode = data.options.mode
     this.selectedMdTheme = data.options.mdTheme

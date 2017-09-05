@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Play);
+@import url(https://fonts.googleapis.com/css?family=Play);
 
 #iceberg {
   color: #a7abbe;
@@ -11,14 +11,6 @@
 #iceberg .markdown-body,
 #iceberg p {
   font-family: 'Play', sans-serif;
-}
-
-#iceberg *::selection {
-  background-color: rgba(145,192,202,0.5);
-}
-
-#iceberg *::-moz-selection {
-  background-color: rgba(145,192,202,0.5);
 }
 
 #iceberg a {
@@ -64,4 +56,4 @@
   color: #d3d5de;
   font-weight: bold;
   font-style: normal;
-j
+}
