@@ -28105,8 +28105,8 @@ var LZString = __webpack_require__(121);
             hljsStyle: this.selectedHljsStyle,
             mdThemes: this.selectedMdTheme
           }
-          // console.log('SAVE: ', data)
-        };localStorage[this.localStorageKey] = JSON.stringify(data);
+        };
+        localStorage[this.localStorageKey] = JSON.stringify(data);
       }
     },
     clickPublicLinkButton: function () {
@@ -28126,7 +28126,7 @@ var LZString = __webpack_require__(121);
                   }
                 };
                 compress = LZString.compressToEncodedURIComponent(JSON.stringify(data));
-                publicLinkUrl = location.origin + '/#/public/' + compress;
+                publicLinkUrl = location.href.split('#')[0] + '#/public/' + compress;
                 _context.next = 6;
                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl });
 
@@ -45447,7 +45447,7 @@ exports = module.exports = __webpack_require__(36)();
 
 
 // module
-exports.push([module.i, "#app,#public,.preview,body,html{height:100%}", ""]);
+exports.push([module.i, "#app,#public,.preview,body,html{height:100%}.preview{overflow:scroll}", ""]);
 
 // exports
 

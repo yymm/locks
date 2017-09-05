@@ -75,4 +75,7 @@ export default {
 html, body, #public, #app, .preview {
   height: 100%;
 }
+.preview {
+  overflow: scroll;
+}
 </style>

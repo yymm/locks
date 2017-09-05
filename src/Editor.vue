@@ -159,7 +159,6 @@ export default {
             mdThemes: this.selectedMdTheme
           }
         }
-        // console.log('SAVE: ', data)
         localStorage[this.localStorageKey] = JSON.stringify(data)
       }
     },
@@ -175,7 +174,7 @@ export default {
       }
 
       let compress = LZString.compressToEncodedURIComponent(JSON.stringify(data))
-      let publicLinkUrl = location.origin + '/#/public/' + compress
+      let publicLinkUrl = location.href.split('#')[0] + '#/public/' + compress
 
       let res = await axios.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl })
       if (res.status !== 200) {
