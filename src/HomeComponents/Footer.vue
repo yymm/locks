@@ -22,4 +22,7 @@ a {
   text-decoration: none;
   font-size: 24px;
 }
+a:hover {
+  border-bottom: 1px solid #708f9e;
+}
 </style>

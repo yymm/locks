@@ -5,6 +5,20 @@
     </div>
     <div class="container">
       <div class="contents">
+        <div class="item" style="width: 400px; margin-top: 50px;">
+          <h3>LocalStoraged</h3>
+          <ul style="margin-bottom: 0;"><li><span style="color: #049be3;">Anyone available!</span><ul class="localstoraged-ul"><li>
+            <span>Anyone can use, if you access here.</span>
+          </li></ul></li></ul>
+          <ul style="margin-bottom: 0; margin-top: 0;"><li><span style="color: #049be3;">Safe</span><ul class="localstoraged-ul"><li>
+            <span>Data stored in your device, don't worry leak.</span>
+          </li></ul></li></ul>
+          <ul style="margin-top: 0;"><li><span style="color: #049be3;">Fast</span><ul class="localstoraged-ul"><li>
+            <span>Less network communication.</span>
+          </li></ul></li></ul>
+        </div>
+      </div>
+      <div class="contents">
         <div class="item">
           <h3>Mode</h3>
           <ul><li v-for="v in mode">
@@ -40,8 +54,7 @@
         <div class="item">
           <h3>TODO</h3>
           <ul style="list-style-type: none;"><li v-for="v in todo">
-            <input type="checkbox" v-model="v.done" disabled></input>
-            {{ v.text }}
+            <span><input type="checkbox" v-model="v.done" disabled></input>{{ v.text }}</span>
           </li></ul>
         </div>
       </div>
@@ -96,7 +109,7 @@ let theme = [
 ]
 let todo = [
   { text: 'Feat: Sync other device', done: false },
-  { text: 'Feat: Generate public link', done: false },
+  { text: 'Feat: Generate public link', done: true },
   { text: 'Feat: Generate raw html', done: false },
 ]
 
@@ -140,10 +153,11 @@ export default {
   width: 300px;
   min-width: 300px;
   margin: auto;
-  padding: 50px 50px 0px;
+  padding: 30px 20px 0px 100px;
 }
 h3 {
   font-size: 24px;
+  padding-bottom: 4px;
   border-bottom: 1px solid #263238;
 }
 ul {
@@ -160,5 +174,12 @@ a {
 }
 a:hover {
   color: #61cafc;
+}
+.localstoraged-ul {
+  margin: 0.3em 0 0.6em;
+  padding-left: 0.5em;
+}
+.localstoraged-ul li {
+  list-style-type: none;
 }
 </style>

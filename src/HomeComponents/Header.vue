@@ -1,6 +1,6 @@
 <template>
   <div class='header'>
-    <div class="header-content" style="justify-content: right;">
+    <div class="header-content" style="justify-content: flex-end;">
       <div class="icon-lock" style="clear: left; float: left;">
         <div class="lock-top-1" style="background-color: #263238"></div>
         <div class="lock-top-2"></div>

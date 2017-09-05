@@ -1,0 +1,28 @@
+.control-button {
+  position: absolute;
+  font-size: 2rem;
+}
+.control-button:hover {
+  color: #555;
+  font-size: 2.2rem;
+}
+.control-left {
+  bottom: 20px;
+  right: 50px;
+}
+.control-right {
+  bottom: 20px;
+  right: 10px;
+}
+.current-page-index {
+  position: absolute;
+  font-size: 0.8rem;
+  color: #222;
+  bottom: 10px;
+  left: 10px;
+}
+.slide-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

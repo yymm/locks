@@ -30,6 +30,11 @@
         <select v-model="selectedMdTheme" @change="changeMdTheme">
           <option v-for="theme in mdThemes">{{ theme }}</option>
         </select>
+        <button @click="clickPublicLinkButton">Public Link</button>
+        <modal v-if="showPublicLinkModal" @close="showPublicLinkModal = false">
+          <h3 slot="header">Public Link</h3>
+          <input type="text" style="width: 250px;" slot="body" :value="publicLinkUrl" readonly></input>
+        </modal>
       </div>
     </div>
   </div>
@@ -41,6 +46,7 @@ import CodeMirror from 'codemirror'
 import axios from 'axios'
 import MdParser from './Parser/MarkdownParser'
 import MdSlideParser from './Parser/MarkdownSlideParser'
+import Modal from './ModalDialog.vue'
 require('../node_modules/codemirror/mode/markdown/markdown')
 require('../node_modules/codemirror/mode/gfm/gfm')
 require('../node_modules/codemirror/mode/javascript/javascript')
@@ -64,6 +70,7 @@ require('../node_modules/codemirror/addon/fold/markdown-fold.js')
 require('../node_modules/codemirror/addon/fold/brace-fold.js')
 require('./assets/show-hint-for-emoji.js')
 require('./assets/ASCIIMathTeXImg.js')
+let LZString = require('./assets/lz-string.min.js')
 
 export default {
   name: 'app',
@@ -82,7 +89,9 @@ export default {
       highlightjsStyles: [],
       selectedMdTheme: 'default',
       mdThemes: [],
-      overwrapMode: false
+      overwrapMode: false,
+      showPublicLinkModal: false,
+      publicLinkUrl: ''
     }
   },
   computed: {
@@ -153,6 +162,29 @@ export default {
         // console.log('SAVE: ', data)
         localStorage[this.localStorageKey] = JSON.stringify(data)
       }
+    },
+    clickPublicLinkButton: async function() {
+      let str = 'Hello World!'
+      let data = {
+        text: this.cm.getValue(),
+        options: {
+          mode: this.selectedMode,
+          hljsStyle: this.selectedHljsStyle,
+          mdTheme: this.selectedMdTheme
+        }
+      }
+
+      let compress = LZString.compressToEncodedURIComponent(JSON.stringify(data))
+      let publicLinkUrl = location.origin + '/#/public/' + compress
+
+      let res = await axios.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl })
+      if (res.status !== 200) {
+        console.log('Google URL Shortener API is dead.. Oops...')
+        return
+      }
+      this.publicLinkUrl = res.data.id
+
+      this.showPublicLinkModal = true
     }
   },
   async mounted() {
@@ -177,7 +209,7 @@ export default {
     })
 
     // Initialize localStorage Key
-    this.localStorageKey = 'memo-' + this.$router.currentRoute.path.replace('/', '')
+    this.localStorageKey = 'memo-' + this.$router.currentRoute.path.split('/').pop()
 
     // if storage existed, change editor state
     let storage = JSON.parse(localStorage[this.localStorageKey] || 'null')
@@ -243,6 +275,9 @@ export default {
     }
 
     this.cm.on('change', emojiComplete.bind(this))
+  },
+  components: {
+    'modal': Modal
   }
 }
 </script>
@@ -268,35 +303,6 @@ html, body, #editor, #app {
   font-size: 1rem;
   height: 100%;
 }
-.markdown-body {
-  padding: 1.5rem;
-  max-width: 1012px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.control-button {
-  position: absolute;
-  font-size: 2rem;
-}
-.control-button:hover {
-  color: #555;
-  font-size: 2.2rem;
-}
-.control-left {
-  bottom: 20px;
-  right: 50px;
-}
-.control-right {
-  bottom: 20px;
-  right: 10px;
-}
-.current-page-index {
-  position: absolute;
-  font-size: 0.8rem;
-  color: #222;
-  bottom: 10px;
-  left: 10px;
-}
 .control-fullscreen {
   top: 10px;
   right: 10px;
@@ -318,11 +324,6 @@ html, body, #editor, #app {
 }
 .menu-item {
   flex: 1;
-}
-.slide-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .normal {
   padding-top: 24px;

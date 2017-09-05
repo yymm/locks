@@ -1,8 +1,10 @@
 # Locks
 
-LocalStoraged & Rich Markdown Slide Editor.
+LocalStoraged Rich Markdown Slide Editor.
 
-## Developing Info
+Anyone available! Try [Locks](https://yymm.github.io/locks/#/ "Locks") now!
+
+## for Developer
 
 ``` bash
 # install dependencies
@@ -13,4 +15,7 @@ npm run dev
 
 # build for production with minification
 npm run build
+
+# create gh-pages(docs/)
+npm run docs
 ```

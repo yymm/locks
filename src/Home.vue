@@ -6,7 +6,7 @@
         No Data...
       </div>
       <div class='item' v-for='(value, index) in data'>
-        <router-link :to="value.datetime">
+        <router-link :to="'editor/' + value.datetime">
           <span class='datetime'>{{ value.datetime }}</span>
           <span class='shorthand'>{{ value.shorthand }}</span>
         </router-link>
@@ -36,7 +36,6 @@ export default {
     }
   },
   created() {
-    // let sum = 0
     for (let key in localStorage) {
       if (localStorage.hasOwnProperty(key) && key.indexOf('memo-') === 0 ) {
         let value = null
@@ -71,8 +70,8 @@ export default {
   methods: {
     newPage: function() {
       let datetime = util.formatDate(new Date(Date.now()))
-      this.$router.push(datetime)
       localStorage['memo-' + datetime] = ''
+      this.$router.push('editor/' + datetime)
     },
     deleteData: function(key, index) {
       localStorage.removeItem('memo-' + key)
