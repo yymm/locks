@@ -176,12 +176,19 @@ export default {
       let compress = LZString.compressToEncodedURIComponent(JSON.stringify(data))
       let publicLinkUrl = location.href.split('#')[0] + '#/public/' + compress
 
-      let res = await axios.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl })
-      if (res.status !== 200) {
-        console.log('Google URL Shortener API is dead.. Oops...')
+      try {
+        let res = await axios.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl })
+        this.publicLinkUrl = res.data.id
+      }
+      catch(e) {
+        if (e.response.status === 400) {
+          console.log('MESSAGE: ' + e.response.data.error.message)
+        } else {
+          console.log('Google URL Shortener API is dead.. Oops...')
+          console.log('MESSAGE: ' + e.response.data.error.message)
+        }
         return
       }
-      this.publicLinkUrl = res.data.id
 
       this.showPublicLinkModal = true
     }

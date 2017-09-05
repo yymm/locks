@@ -46,6 +46,8 @@ export default {
     this.selectedMdTheme = data.options.mdTheme
     this.selectedHljsStyle = data.options.hljsStyle
     this.changeHljsStyle()
+    let title = data.text.split('\n')[0].trim().replace(/^#+\s+/, '')
+    document.title = title + ' - Locks'
   },
   methods: {
     changeHljsStyle: function() {

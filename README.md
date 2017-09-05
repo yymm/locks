@@ -1,8 +1,12 @@
 # Locks
 
-LocalStoraged Rich Markdown Slide Editor.
+![Locks](screenshot/locks.png)
 
 Anyone available! Try [Locks](https://yymm.github.io/locks/#/ "Locks") now!
+
+# What's about?
+
+See ==> [What's about Locks?](https://goo.gl/Pdtdy3)
 
 ## for Developer
 

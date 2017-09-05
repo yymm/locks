@@ -28127,31 +28127,39 @@ var LZString = __webpack_require__(121);
                 };
                 compress = LZString.compressToEncodedURIComponent(JSON.stringify(data));
                 publicLinkUrl = location.href.split('#')[0] + '#/public/' + compress;
-                _context.next = 6;
+                _context.prev = 4;
+                _context.next = 7;
                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyB72MwS3skhkKcieqZWChBaPtJPeVVcsR8', { longUrl: publicLinkUrl });
 
-              case 6:
+              case 7:
                 res = _context.sent;
 
-                if (!(res.status !== 200)) {
-                  _context.next = 10;
-                  break;
-                }
+                this.publicLinkUrl = res.data.id;
+                _context.next = 15;
+                break;
 
-                console.log('Google URL Shortener API is dead.. Oops...');
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context['catch'](4);
+
+                if (_context.t0.response.status === 400) {
+                  console.log('MESSAGE: ' + _context.t0.response.data.error.message);
+                } else {
+                  console.log('Google URL Shortener API is dead.. Oops...');
+                  console.log('MESSAGE: ' + _context.t0.response.data.error.message);
+                }
                 return _context.abrupt('return');
 
-              case 10:
-                this.publicLinkUrl = res.data.id;
+              case 15:
 
                 this.showPublicLinkModal = true;
 
-              case 12:
+              case 16:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[4, 11]]);
       }));
 
       function clickPublicLinkButton() {
@@ -28471,6 +28479,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 var mode = [{ text: 'slide' }, { text: 'slide (centering)' }, { text: 'normal (simple markdown)' }, { text: 'Fullscreen available all mode' }];
 var editor = [{ text: 'powerd by CodeMirror', link: 'https://codemirror.net/' }, { text: 'GFM' }, { text: 'auto save (also theme & mode)' }, { text: 'realtime preview' }, { text: 'fenced code highlighting' }, { text: 'emoji complete' }, { text: 'mode (vim/emacs/sublime)' }, { text: 'folding' }];
@@ -28639,6 +28650,8 @@ var LZString = __webpack_require__(121);
     this.selectedMdTheme = data.options.mdTheme;
     this.selectedHljsStyle = data.options.hljsStyle;
     this.changeHljsStyle();
+    var title = data.text.split('\n')[0].trim().replace(/^#+\s+/, '');
+    document.title = title + ' - Locks';
   },
 
   methods: {
@@ -80225,6 +80238,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "localstoraged-ul"
   }, [_c('li', [_c('span', [_vm._v("Data stored in your device, don't worry leak.")])])])])]), _vm._v(" "), _c('ul', {
     staticStyle: {
+      "margin-bottom": "0",
       "margin-top": "0"
     }
   }, [_c('li', [_c('span', {
@@ -80233,7 +80247,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Fast")]), _c('ul', {
     staticClass: "localstoraged-ul"
-  }, [_c('li', [_c('span', [_vm._v("Less network communication.")])])])])])])])
+  }, [_c('li', [_c('span', [_vm._v("Less network communication.")])])])])]), _vm._v(" "), _c('ul', {
+    staticStyle: {
+      "margin-bottom": "0",
+      "margin-top": "0"
+    }
+  }, [_c('li', [_c('span', {
+    staticStyle: {
+      "color": "#049be3"
+    }
+  }, [_vm._v("Serverless")]), _c('ul', {
+    staticClass: "localstoraged-ul"
+  }, [_c('li', [_c('span', [_vm._v("Powered by "), _c('a', {
+    staticStyle: {
+      "color": "#4fc08d"
+    },
+    attrs: {
+      "target": "_blank",
+      "href": "https://jp.vuejs.org/index.html"
+    }
+  }, [_vm._v("Vue.js.")])])])])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', [_c('a', {
     staticClass: "alt-a-tag",

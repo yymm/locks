@@ -13,8 +13,11 @@
           <ul style="margin-bottom: 0; margin-top: 0;"><li><span style="color: #049be3;">Safe</span><ul class="localstoraged-ul"><li>
             <span>Data stored in your device, don't worry leak.</span>
           </li></ul></li></ul>
-          <ul style="margin-top: 0;"><li><span style="color: #049be3;">Fast</span><ul class="localstoraged-ul"><li>
+          <ul style="margin-bottom: 0; margin-top: 0;"><li><span style="color: #049be3;">Fast</span><ul class="localstoraged-ul"><li>
             <span>Less network communication.</span>
+          </li></ul></li></ul>
+          <ul style="margin-bottom: 0; margin-top: 0;"><li><span style="color: #049be3;">Serverless</span><ul class="localstoraged-ul"><li>
+            <span>Powered by <a target="_blank" href="https://jp.vuejs.org/index.html" style="color: #4fc08d;">Vue.js.</a></span>
           </li></ul></li></ul>
         </div>
       </div>
