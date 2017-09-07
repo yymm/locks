@@ -262,12 +262,11 @@ export default {
         let currentWord = token.string
         while (ch-- > -1) {
           let t = cm.getTokenAt({ch, line}).string
-          if (t === ' ') break
           if (t === ':') {
             let filteredList = emojiList.filter((item) => {
               return item.text.indexOf(currentWord) == 0 ? true : false
             })
-            if (filteredList.length > 1) {
+            if (filteredList.length >= 1) {
               return {
                 list: filteredList,
                 from: CodeMirror.Pos(line, ch),
