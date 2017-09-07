@@ -28262,12 +28262,11 @@ var LZString = __webpack_require__(121);
                   var currentWord = token.string;
                   while (ch-- > -1) {
                     var t = cm.getTokenAt({ ch: ch, line: line }).string;
-                    if (t === ' ') break;
                     if (t === ':') {
                       var filteredList = emojiList.filter(function (item) {
                         return item.text.indexOf(currentWord) == 0 ? true : false;
                       });
-                      if (filteredList.length > 1) {
+                      if (filteredList.length >= 1) {
                         return {
                           list: filteredList,
                           from: __WEBPACK_IMPORTED_MODULE_0_codemirror___default.a.Pos(line, ch),
