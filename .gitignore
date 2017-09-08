@@ -3,6 +3,7 @@ node_modules/
 npm-debug.log
 yarn-error.log
 dist
+docs/*.map
 *.bak
 
 # Editor directories and files
