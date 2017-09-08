@@ -1,8 +1,8 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" @click="$emit('modal-close')">
+    <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container" :style="{ width: width }">
 
           <div class="modal-header">
             <slot name="header">
@@ -32,13 +32,19 @@
 
 <script>
 export default {
+  props: {
+    width: {
+      type: String,
+      default: '300px'
+    }
+  }
 }
 </script>
 
 <style>
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 9997;
   top: 0;
   left: 0;
   width: 100%;
@@ -55,7 +61,8 @@ export default {
 
 .modal-container {
   position: relative;
-  width: 300px;
+  z-index: 9998;
+  /* width: 300px; */
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -68,6 +75,13 @@ export default {
 .modal-header h3 {
   margin-top: 0;
   color: #049be3;
+}
+
+.modal-body h4 {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  color: #e38f04;
+  border-left: 4px solid #e38f04;
 }
 
 .modal-body {
