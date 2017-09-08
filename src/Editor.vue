@@ -31,12 +31,16 @@
           <option v-for="theme in mdThemes">{{ theme }}</option>
         </select>
         <button @click="clickPublicLinkButton">Public Link</button>
-        <modal v-if="showPublicLinkModal" @close="showPublicLinkModal = false">
+        <modal v-if="showPublicLinkModal" @modal-close="showPublicLinkModal = false">
           <h3 slot="header">Public Link</h3>
           <input type="text" style="width: 250px;" slot="body" :value="publicLinkUrl" readonly></input>
         </modal>
       </div>
     </div>
+    <flash v-if="showFlash" @flash-close="showFlash = false" :color="flashItem.color" :background="flashItem.background">
+      <h3 slot="header">{{ flashItem.header }}</h3>
+      <p slot="body">{{ flashItem.body }}</p>
+    </flash>
   </div>
   </div>
 </template>
@@ -47,6 +51,7 @@ import axios from 'axios'
 import MdParser from './Parser/MarkdownParser'
 import MdSlideParser from './Parser/MarkdownSlideParser'
 import Modal from './ModalDialog.vue'
+import Flash from './Flash.vue'
 require('../node_modules/codemirror/mode/markdown/markdown')
 require('../node_modules/codemirror/mode/gfm/gfm')
 require('../node_modules/codemirror/mode/javascript/javascript')
@@ -91,6 +96,8 @@ export default {
       mdThemes: [],
       overwrapMode: false,
       showPublicLinkModal: false,
+      showFlash: false,
+      flashItem: {header: '', body: '', color: '#263238', background: '#049be3'},
       publicLinkUrl: ''
     }
   },
@@ -183,6 +190,11 @@ export default {
       catch(e) {
         if (e.response.status === 400) {
           console.log('MESSAGE: ' + e.response.data.error.message)
+          this.flashItem.header = 'Warning'
+          this.flashItem.body = 'Text data is too long... Google URL Shortener API failed...'
+          this.flashItem.background = '#e38f04'
+          this.flashItem.color = '#986003'
+          this.showFlash = true
         } else {
           console.log('Google URL Shortener API is dead.. Oops...')
           console.log('MESSAGE: ' + e.response.data.error.message)
@@ -282,7 +294,8 @@ export default {
     this.cm.on('change', emojiComplete.bind(this))
   },
   components: {
-    'modal': Modal
+    'modal': Modal,
+    'flash': Flash
   }
 }
 </script>
@@ -295,6 +308,7 @@ html, body, #editor, #app {
   position: relative;
   display: flex;
   flex-flow: row;
+  overflow: hidden;
 }
 .editor {
   flex: 1;

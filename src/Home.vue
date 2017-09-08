@@ -90,6 +90,8 @@ export default {
 #home {
   font-family: 'Quantico', sans-serif;
   color: #263238;
+  height: 100%;
+  overflow: scroll;
 }
 .workspace {
   position: relative;

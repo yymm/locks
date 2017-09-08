@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
+    <div class="modal-mask" @click="$emit('modal-close')">
       <div class="modal-wrapper">
         <div class="modal-container">
 
@@ -20,7 +20,7 @@
             <!--<slot name="footer">-->
               <!--default footer-->
             <!--</slot>-->
-            <button class="modal-default-button modal-button" @click="$emit('close')">
+            <button class="modal-default-button modal-button" @click="$emit('modal-close')">
              Close
             </button>
           </div>
@@ -62,7 +62,6 @@ export default {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  font-family: 'Quantico', sans-serif;
   color: #263238;
 }
 
@@ -86,6 +85,7 @@ export default {
   border: none;
   color: #eee;
   background: #263238;
+  cursor: pointer;
 }
 
 .modal-default-button:hover {
