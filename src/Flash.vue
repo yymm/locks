@@ -40,13 +40,14 @@ export default {
 
 <style>
 .flash-container {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 200px;
   padding: 10px;
   transition: all .5s ease;
   cursor: pointer;
+  z-index: 9999;
 }
 
 .flash-header h3 {

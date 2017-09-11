@@ -16,16 +16,14 @@
     </div>
     <feature-components></feature-components>
     <footer-components></footer-components>
-    <modal class='settings' v-if="showSettings" @modal-close="showSettings = false" width="400px">
+    <modal v-if="showSettings" @modal-close="showSettings = false" width="400px">
       <h3 slot="header">Settings</h3>
-      <div slot="body">
-        <h4>TextLint <span :class="textlintSettings ? 'active' : 'inactive'"></span></h4>
-        <label for="textlintUrl">Server URL: </label>
-        <input id="textlintUrl" text="text" style="width: 250px;" @keyup.enter="checkTextLintServer"></input>
-        <div v-if="textlintSettings"></div>
-      </div>
+      <settings slot="body" :displayFlash="displayFlash"></settings>
     </modal>
-    </div>
+    <flash v-if="showFlash" @flash-close="showFlash = false" :color="flashItem.color" :background="flashItem.background">
+      <h3 slot="header">{{ flashItem.header }}</h3>
+      <p slot="body">{{ flashItem.body }}</p>
+    </flash>
   </div>
 </template>
 
@@ -34,20 +32,24 @@ import util from './util'
 import Header from './HomeComponents/Header.vue'
 import Feature from './HomeComponents/Feature.vue'
 import Footer from './HomeComponents/Footer.vue'
+import Settings from './Settings.vue'
 import Modal from './ModalDialog.vue'
+import Flash from './Flash.vue'
 
 export default {
   data() {
     return {
       data: [],
       showSettings: false,
-      textlintSettings: null
+      showFlash: false,
+      flashItem: {header: '', body: '', color: '#263238', background: '#049be3'}
     }
   },
   created() {
     for (let key in localStorage) {
-      if (localStorage.hasOwnProperty(key) && key.match(/^settings$/)) {
+      if (localStorage.hasOwnProperty(key) && key.match(/^settings-[a-z]+$/)) {
         console.log('Setting found.')
+        console.log(key, localStorage[key])
       } else {
         console.log('Setting not found.')
       }
@@ -90,13 +92,30 @@ export default {
     deleteData: function(key, index) {
       localStorage.removeItem('memo-' + key)
       this.data.splice(index, 1)
+    },
+    displayFlash: function(header, body, style = 'info') {
+      this.flashItem.header = header
+      this.flashItem.body = body
+      this.flashItem.background = '#049be3'
+      this.flashItem.color = '#263238'
+      if (style === 'warning') {
+        this.flashItem.background = '#e38f04'
+        this.flashItem.color = '#986003'
+      }
+      if (style === 'error') {
+        this.flashItem.background = '#fb7738'
+        this.flashItem.color = '#983303'
+      }
+      this.showFlash = true
     }
   },
   components: {
-    'modal': Modal,
     'header-components': Header,
     'feature-components': Feature,
-    'footer-components': Footer
+    'footer-components': Footer,
+    'modal': Modal,
+    'settings': Settings,
+    'flash': Flash
   }
 }
 </script>
@@ -173,42 +192,5 @@ export default {
 .delete-button:hover {
   background: #37474f;
   color: #fff;
-}
-.active {
-  width: 10px;
-  height: 10px;
-  margin-left: 5px;
-  background: #9be304;
-  display: inline-block;
-  border-radius: 5px;
-  animation: active 1s linear 0s infinite alternate none running;
-}
-
-@keyframes active {
-  0% { transform: scale(1.0); }
-  20% { transform: scale(1.1); }
-  40% { transform: scale(1.2); }
-  60% { transform: scale(1.3); }
-  80% { transform: scale(1.4); }
-  100% { transform: scale(1.5); }
-}
-
-.inactive {
-  display: inline-block;
-  width: 10px;
-  height: 2px;
-  margin-left: 5px;
-  background: #e34c04;
-  transform: rotate(45deg);
-  margin: 5px auto;
-}
-
-.inactive:after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  transform: rotate(90deg);
 }
 </style>
