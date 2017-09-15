@@ -1,5 +1,5 @@
 <template>
-  <div id="home" @click.alt.shift.meta="showSettings = !showSettings">
+  <div id="home" @click.alt.meta="showSettings = !showSettings">
     <header-components :data="data" :sum="sum" v-on:new-page="newPage"></header-components>
     <div class='workspace'>
       <div class="empty" v-if="data.length === 0">
@@ -16,7 +16,7 @@
     </div>
     <feature-components></feature-components>
     <footer-components></footer-components>
-    <modal v-if="showSettings" @modal-close="showSettings = false" width="400px">
+    <modal v-if="showSettings" @modal-close="showSettings = false" width="500px">
       <h3 slot="header">Settings</h3>
       <settings slot="body" :displayFlash="displayFlash"></settings>
     </modal>
@@ -48,10 +48,7 @@ export default {
   created() {
     for (let key in localStorage) {
       if (localStorage.hasOwnProperty(key) && key.match(/^settings-[a-z]+$/)) {
-        console.log('Setting found.')
-        console.log(key, localStorage[key])
-      } else {
-        console.log('Setting not found.')
+        continue
       }
       if (localStorage.hasOwnProperty(key) && key.indexOf('memo-') === 0 ) {
         let value = null

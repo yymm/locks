@@ -2,12 +2,30 @@
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
     <div :id="selectedMdTheme" class="preview" :class="selectedMode">
-      <div class="markdown-body" v-html="parsed"></div>
+      <div style="position: relative; overflow: scroll; height: 100%;">
+        <div class="markdown-body" v-html="parsed" style="box-sizing: border-box; overflow: scroll; height: 100%;"></div>
+        <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
+        <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
+        <div class="current-page-index" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
+        <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
+      </div>
+      <div v-if="showTextLint" class="textlint">
+        <div style="position: fixed; width: 200px; background: #9fb4be; color: #263238; padding: 5px;">
+          <div style="position: relative;">
+            <img width="25" src="https://textlint.github.io/img/textlint-icon_256x256.png"></img>
+            <span class="textlint-header-button" style="left: 50px; color: #9be304;" @click="fixByTextLint">✔ Fix</span>
+            <span class="textlint-header-button" style="left: 120px; color: #bbb;" @click="showTextLint = false">✖ Close</span>
+          </div>
+        </div>
+        <table>
+          <tr v-for="message in textlintMessages" :title="message.rule">
+            <td>{{ message.lc }}</td>
+            <td style="color: #9be304;">{{ message.fix ? '✔' : ''}}</td>
+            <td>{{ message.text }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
-    <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
-    <div class="current-page-index" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
-    <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
     <div class="menu" :style="{ display: showEditor }">
       <div class="menu-item">
         <select v-model="selectedCmTheme" @change="changeCmTheme">
@@ -73,6 +91,7 @@ require('../node_modules/codemirror/addon/fold/foldcode.js')
 require('../node_modules/codemirror/addon/fold/foldgutter.js')
 require('../node_modules/codemirror/addon/fold/markdown-fold.js')
 require('../node_modules/codemirror/addon/fold/brace-fold.js')
+require('../node_modules/codemirror/addon/lint/lint.js')
 require('./assets/show-hint-for-emoji.js')
 require('./assets/ASCIIMathTeXImg.js')
 let LZString = require('./assets/lz-string.min.js')
@@ -98,7 +117,9 @@ export default {
       showPublicLinkModal: false,
       showFlash: false,
       flashItem: {header: '', body: '', color: '#263238', background: '#049be3'},
-      publicLinkUrl: ''
+      publicLinkUrl: '',
+      showTextLint: false,
+      textlintMessages: [],
     }
   },
   computed: {
@@ -190,11 +211,7 @@ export default {
       catch(e) {
         if (e.response.status === 400) {
           console.log('MESSAGE: ' + e.response.data.error.message)
-          this.flashItem.header = 'Warning'
-          this.flashItem.body = 'Text data is too long... Google URL Shortener API failed...'
-          this.flashItem.background = '#e38f04'
-          this.flashItem.color = '#986003'
-          this.showFlash = true
+          this.displayFlash('Warning', 'Text data is too long... Google URL Shortener API failed...', 'warning')
         } else {
           console.log('Google URL Shortener API is dead.. Oops...')
           console.log('MESSAGE: ' + e.response.data.error.message)
@@ -203,6 +220,37 @@ export default {
       }
 
       this.showPublicLinkModal = true
+    },
+    fixByTextLint: async function() {
+      try {
+        let data = JSON.parse(localStorage['settings-textlint'])
+        let res = await axios.post(data.url + '/fix', { text: this.cm.getValue(), options: data.options })
+        if (res.data.error) {
+          console.log(res.data.error)
+          this.displayFlash('TextLint Server Error', res.data.error, 'error')
+        } else {
+          this.cm.setValue(res.data.fix)
+          this.displayFlash('TextLint', 'Automatically fix succeeded!')
+        }
+      }
+      catch(e) {
+        console.log('Server has gone...', e)
+      }
+    },
+    displayFlash: function(header, body, style = 'info') {
+      this.flashItem.header = header
+      this.flashItem.body = body
+      this.flashItem.background = '#049be3'
+      this.flashItem.color = '#263238'
+      if (style === 'warning') {
+        this.flashItem.background = '#e38f04'
+        this.flashItem.color = '#986003'
+      }
+      if (style === 'error') {
+        this.flashItem.background = '#fb7738'
+        this.flashItem.color = '#983303'
+      }
+      this.showFlash = true
     }
   },
   async mounted() {
@@ -226,6 +274,45 @@ export default {
       return url.substring(url.lastIndexOf('/')+1, url.lastIndexOf('.'))
     })
 
+    // Check TextLint feature
+    if ('settings-textlint' in localStorage) {
+      this.showTextLint = true
+      CodeMirror.registerHelper('lint', 'markdown', async function(text) {
+        let found = []
+        this.textlintMessages = []
+        let data = JSON.parse(localStorage['settings-textlint'])
+        try {
+          let res = await axios.post(data.url + '/lint', { text: text, options: data.options })
+          if (res.data.error) {
+            console.log(res.data.error)
+            this.displayFlash('TextLint Server Error', res.data.error, 'error')
+            return found
+          }
+          this.textlintMessages = res.data.json.map((v) => {
+            return {
+              lc: `${v.line}:${v.column}`,
+              severity: v.severity === 1 ? 'warning' : 'error',
+              text: v.message,
+              rule: v.ruleId,
+              fix: 'fix' in v
+            }
+          })
+          for (let message of res.data.json) {
+            found.push({
+              from: CodeMirror.Pos(message.line-1, message.column-1),
+              to: CodeMirror.Pos(message.line-1, message.column),
+              message: message.message,
+              severity: message.severity === 1 ? 'warning' : 'error',
+            })
+          }
+        }
+        catch(e) {
+          console.log('Server has gone...', e)
+        }
+        return found
+      }.bind(this))
+    }
+
     // Initialize localStorage Key
     this.localStorageKey = 'memo-' + this.$router.currentRoute.path.split('/').pop()
 
@@ -246,7 +333,8 @@ export default {
       theme: storage ? storage.options.cmTheme : this.selectedCmTheme,
       lineNumbers: true,
       foldGutter: true,
-      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+      gutters: this.showTextLint ? ["CodeMirror-lint-markers", "CodeMirror-foldgutter"] : ["CodeMirror-foldgutter"],
+      lint: this.showTextLint
     })
 
     //
@@ -316,6 +404,9 @@ html, body, #editor, #app {
 }
 .preview {
   flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
   overflow: scroll;
 }
 .CodeMirror {
@@ -346,5 +437,39 @@ html, body, #editor, #app {
 }
 .normal {
   padding-top: 24px;
+}
+.textlint {
+  max-height: 300px;
+  min-height: 300px;
+  background: #263238;
+  color: #9fb4be;
+  overflow: scroll;
+  position: relative;
+}
+.textlint table {
+  width: 100%;
+  margin-top: 45px;
+  padding: 10px;
+}
+.textlint td {
+  border-bottom: 1px solid #5e7b8a;
+  padding: 5px 15px;
+  line-height: 24px;
+}
+.textlint tr:hover {
+  background: #36474f;
+}
+.textlint-header-button {
+  position: absolute;
+  top: 2px;
+  border: 1px solid #263238;
+  border-radius: 3px;
+  padding: 5px;
+  padding-bottom: 2px;
+  background: #263238;
+  cursor: pointer;
+}
+.textlint-header-button:hover {
+  background: #3e515b;
 }
 </style>

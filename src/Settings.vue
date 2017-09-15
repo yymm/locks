@@ -3,14 +3,14 @@
     <div>
       <h4>TextLint <span :class="textlintStatus? 'active' : 'inactive'"></span></h4>
       <label for="textlintUrl">Server URL: </label>
-      <input id="textlintUrl" text="text" style="width: 250px;" @keyup.enter="connectTextLintServer($event)" value="http://localhost:5000"></input>
-      <div v-if="textlintRules">
+      <input id="textlintUrl" text="text" style="width: 350px;" @keyup.enter="connectTextLintServer($event)" value="http://localhost:5000"></input>
+      <div v-if="textlintRules.length !== 0">
         <table>
           <tr><th>status</th><th>rule</th><th>config</th></tr>
-          <tr v-for="(rule, key) in textlintRules">
-            <th><input type="checkbox" v-model="rule.status"></input></th>
-            <th>{{ key }}</th>
-            <th><input type="text" v-model="JSON.stringify(rule.config)"</th>
+          <tr v-for="rule in textlintRules">
+            <td><input type="checkbox" v-model="rule.status"></input></td>
+            <td>{{ rule.name }}</th>
+            <td><input type="text" v-model="rule.config"></input></td>
           </tr>
         </table>
       </div>
@@ -32,53 +32,105 @@ export default {
     return {
       textlintStatus: false,
       textlintUrl: '',
-      textlintRules: {},
+      textlintRules: [],
     }
+  },
+  mounted() {
+    // load LocalStorage
+    if ('settings-textlint' in localStorage) {
+      this.textlintStatus = true
+      const data = JSON.parse(localStorage['settings-textlint'])
+      this.textlintUrl = data.url
+      this.textlintRules = data.rules
+    }
+  },
+  destroyed() {
+    this.handshakeTextLintServer()
   },
   methods: {
     connectTextLintServer: async function(e) {
       const url = e.target.value
       try {
         let res = await axios.post(url + '/connect', { message: 'negotiate connection' })
-        if (res.data.message) {
-          this.textlintUrl = url
-          this.handshakeTextLintServer()
+        if (res.data.rules && res.data.rules.length !== 0) {
+          this.saveTextLintSetting(url, res.data.rules)
+          this.displayFlash('Success to connect', 'TextLint feature enabled!')
         } else {
           this.displayFlash('Error', 'Invalid server...', 'error')
         }
       }
       catch(e) {
-        this.displayFlash('Error', `Invalid request. Code: ${e.response.status}`, 'error')
+        if (e.response) {
+          this.displayFlash('Error', `Invalid request. Code: ${e.response.status}`, 'error')
+        } else {
+          this.displayFlash('Error', 'Server not found.', 'error')
+        }
       }
     },
     handshakeTextLintServer: async function() {
+      if (!this.textlintStatus) return
       try {
         let res = await axios.post(this.textlintUrl + '/handshake', { message: 'handshake!' })
-        console.log(res)
-        let rules = {};
-        for (let rule in res.data.list) {
-          rules[rule] = { status: false, config: {} }
+        if (res.data.rules && res.data.rules.length !== 0) { // At least one rule
+          this.saveTextLintSetting(this.textlintUrl, res.data.rules)
+        } else {
+          this.displayFlash('Error', 'Invalid server...', 'error')
+          this.removeTextLintSetting()
         }
-        console.log(rules)
-        this.textlintRules = rules
-        this.textlintStatus = true
       }
       catch(e) {
-        this.displayFlash('Error', `Invalid request. Code: ${e.response.status}`, 'error')
-        this.textlintStatus = false
+        if (e.response) {
+          this.displayFlash('Error', `Invalid request. Code: ${e.response.status}`, 'error')
+        } else {
+          this.displayFlash('Error', 'Server has gone.', 'error')
+        }
+        this.removeTextLintSetting()
       }
     },
-    saveTextLintSetting: function() {
-      if (this.textlintStatus) {
-        const data = {
-          textlint: {
-            url: this.textlintUrl,
-            rules: this.textlintRules,
-            textlintConfig: this.textlintConfig
+    saveTextLintSetting: function(url, rules) {
+      this.textlintStatus = true
+      this.textlintUrl = url
+      if (this.textlintRules.length !== 0) {
+        if (this.textlintRules.length === rules.length) {
+          for (let i = 0; i < rules.length; i++) {
+            if (this.textlintRules[i].name !== rules[i]) {
+              // Update new rules
+              this.textlintRules = rules.map((v) => { return { name: v, status: false, config: '' } })
+              break
+            }
+          }
+        } else {
+          // Update new rules
+          this.textlintRules = rules.map((v) => { return { name: v, status: false, config: '' } })
+        }
+      } else {
+        // Initialize rules
+        this.textlintRules = rules.map((v) => { return { name: v, status: false, config: '' } })
+      }
+      let config = {}
+      for (let rule of this.textlintRules) {
+        if (rule.status) {
+          if (rule.config.length === 0) {
+            config[rule.name] = true
+          } else {
+            try {
+              config[rule.name] = JSON.parse(rule.config)
+            }
+            catch(e) {
+              this.displayFlash('JSON parse error.', e.message, 'error')
+              config[rule.name] = true
+            }
           }
         }
-        localStorage['settings-textlint'] = JSON.stringify(data)
       }
+      console.log({ rules: config })
+      localStorage['settings-textlint'] = JSON.stringify({ url: url, rules: this.textlintRules, options: { rules: config } })
+    },
+    removeTextLintSetting: function() {
+      this.textlintStatus = false
+      this.textlintUrl = ''
+      this.textlintRules = []
+      localStorage.removeItem('settings-textlint')
     }
   }
 }
@@ -121,5 +173,24 @@ export default {
   height: 100%;
   background: inherit;
   transform: rotate(90deg);
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+}
+
+table th {
+  padding: 10px;
+  font-weight: 600;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+table td {
+  padding: 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
 }
 </style>
