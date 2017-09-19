@@ -81610,7 +81610,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "click": function($event) {
-        if (!$event.altKey) { return null; }
+        if (!$event.shiftKey) { return null; }
         _vm.showSettings = !_vm.showSettings
       }
     }
