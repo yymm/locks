@@ -1,5 +1,5 @@
 <template>
-  <div id="home" @click.alt.meta="showSettings = !showSettings">
+  <div id="home" @click.alt="showSettings = !showSettings">
     <header-components :data="data" :sum="sum" v-on:new-page="newPage"></header-components>
     <div class='workspace'>
       <div class="empty" v-if="data.length === 0">
