@@ -3,7 +3,7 @@
     <div>
       <h4>TextLint <span :class="textlintStatus? 'active' : 'inactive'"></span></h4>
       <label for="textlintUrl">Server URL: </label>
-      <input id="textlintUrl" text="text" style="width: 350px;" @keyup.enter="connectTextLintServer($event)" value="http://localhost:5000"></input>
+      <input id="textlintUrl" text="text" style="width: 350px;" @keyup.enter="connectTextLintServer($event)" :value="textlintUrl"></input>
       <div v-if="textlintRules.length !== 0">
         <table>
           <tr><th>status</th><th>rule</th><th>config</th></tr>

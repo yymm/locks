@@ -1,7 +1,7 @@
 {
   "name": "locks",
   "description": "LocalStoraged & Rich Markdown Slide Editor.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "yuya yano <yuya.yano.6260@gmail.com>",
   "private": true,
   "scripts": {

@@ -21,8 +21,9 @@
   bottom: 10px;
   left: 10px;
 }
-.slide-center {
+.slide-center .markdown-body {
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
 }

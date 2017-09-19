@@ -17,7 +17,7 @@
             <span>Less network communication.</span>
           </li></ul></li></ul>
           <ul style="margin-bottom: 0; margin-top: 0;"><li><span style="color: #049be3;">Serverless</span><ul class="localstoraged-ul"><li>
-            <span>Powered by <a target="_blank" href="https://jp.vuejs.org/index.html" style="color: #4fc08d;">Vue.js.</a></span>
+            <span>Powered by <a target="_blank" href="https://jp.vuejs.org/index.html" style="color: #4fc08d;">Vue.js.</a> Offline compatible.</span>
           </li></ul></li></ul>
         </div>
       </div>
@@ -119,6 +119,8 @@ let todo = [
   { text: 'Feat: Sync other device', done: false },
   { text: 'Feat: Generate public link', done: true },
   { text: 'Feat: Generate raw html', done: false },
+  { text: 'Feat: TextLint checking', done: false },
+  { text: 'Feat: Embed Twitter link', done: false },
 ]
 
 export default {
