@@ -81135,7 +81135,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "target": "_blank",
       "href": "https://jp.vuejs.org/index.html"
     }
-  }, [_vm._v("Vue.js.")])])])])])])])])
+  }, [_vm._v("Vue.js.")]), _vm._v(" Offline compatible.")])])])])])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('li', [_c('a', {
     staticClass: "alt-a-tag",
@@ -81457,6 +81457,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "markdown-body",
+    staticStyle: {
+      "box-sizing": "border-box",
+      "overflow": "scroll",
+      "height": "100%"
+    },
     domProps: {
       "innerHTML": _vm._s(_vm.parsed)
     }

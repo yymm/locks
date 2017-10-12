@@ -1,7 +1,7 @@
 <template>
   <div id="public">
     <div :id="selectedMdTheme" class="preview" :class="selectedMode">
-      <div class="markdown-body" v-html="parsed"></div>
+      <div class="markdown-body" v-html="parsed" style="box-sizing: border-box; overflow: scroll; height: 100%;"></div>
     </div>
     <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
     <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
