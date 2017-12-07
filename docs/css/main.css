@@ -1,5 +1,5 @@
 .control-button {
-  position: absolute;
+  position: fixed;
   font-size: 2rem;
 }
 .control-button:hover {
@@ -15,7 +15,7 @@
   right: 10px;
 }
 .current-page-index {
-  position: absolute;
+  position: fixed;
   font-size: 0.8rem;
   color: #222;
   bottom: 10px;

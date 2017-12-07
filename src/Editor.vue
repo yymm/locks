@@ -2,15 +2,15 @@
   <div id="editor">
     <div class="editor" :style="{ display: showEditor }"></div>
     <div :id="selectedMdTheme" class="preview" :class="selectedMode">
-      <div style="position: relative; overflow: scroll; height: 100%;">
-        <div class="markdown-body" v-html="parsed" style="box-sizing: border-box; overflow: scroll; height: 100%;"></div>
+      <div class="slide-controls">
+        <div class="markdown-body" v-html="parsed"></div>
         <div class="control-button control-left"  @click="moveSlide(showIndex--)" v-if="selectedMode.indexOf('slide') === 0">&#10094;</div>
         <div class="control-button control-right" @click="moveSlide(showIndex++)" v-if="selectedMode.indexOf('slide') === 0">&#10095;</div>
         <div class="current-page-index" v-if="selectedMode.indexOf('slide') === 0">{{ `${showIndex+1} / ${maxIndex}`  }}</div>
         <div class="control-button control-fullscreen" @click="handleFullscreen">fullscreen</div>
       </div>
       <div v-if="showTextLint" class="textlint">
-        <div style="position: fixed; width: 200px; background: #9fb4be; color: #263238; padding: 5px;">
+        <div class="textlint-controls">
           <div style="position: relative;">
             <img width="25" src="https://textlint.github.io/img/textlint-icon_256x256.png"></img>
             <span class="textlint-header-button" style="left: 50px; color: #9be304;" @click="fixByTextLint">✔ Fix</span>
@@ -400,14 +400,13 @@ html, body, #editor, #app {
 }
 .editor {
   flex: 1;
-  overflow: scroll;
 }
 .preview {
   flex: 1;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .CodeMirror {
   font-size: 1rem;
@@ -443,7 +442,7 @@ html, body, #editor, #app {
   min-height: 300px;
   background: #263238;
   color: #9fb4be;
-  overflow: scroll;
+  overflow: scroll;  
   position: relative;
 }
 .textlint table {
@@ -471,5 +470,20 @@ html, body, #editor, #app {
 }
 .textlint-header-button:hover {
   background: #3e515b;
+}
+.slide-controls {
+  position: relative;
+  height: 100%;
+}
+.markdown-body {
+  box-sizing: border-box;
+  height: 100%;
+}
+.textlint-controls {
+  position: fixed;
+  width: 200px;
+  background: #9fb4be;
+  color: #263238;
+  padding: 5px;
 }
 </style>
