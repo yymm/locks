@@ -46289,7 +46289,7 @@ exports = module.exports = __webpack_require__(30)();
 
 
 // module
-exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row;overflow:hidden}.editor,.preview{flex:1;overflow:scroll}.preview{display:flex;flex-flow:column;justify-content:space-between}.CodeMirror{font-size:1rem;height:100%}.control-fullscreen{top:10px;right:10px;color:#000;opacity:.3;font-size:1rem}.control-fullscreen:hover{opacity:1;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}.normal{padding-top:24px}.textlint{max-height:300px;min-height:300px;background:#263238;color:#9fb4be;overflow:scroll;position:relative}.textlint table{width:100%;margin-top:45px;padding:10px}.textlint td{border-bottom:1px solid #5e7b8a;padding:5px 15px;line-height:24px}.textlint tr:hover{background:#36474f}.textlint-header-button{position:absolute;top:2px;border:1px solid #263238;border-radius:3px;padding:5px;padding-bottom:2px;background:#263238;cursor:pointer}.textlint-header-button:hover{background:#3e515b}", ""]);
+exports.push([module.i, "#app,#editor,body,html{height:100%}#editor{position:relative;display:flex;flex-flow:row;overflow:hidden}.editor{flex:1}.preview{flex:1;display:flex;flex-flow:column;justify-content:space-between;overflow-y:scroll}.CodeMirror{font-size:1rem;height:100%}.control-fullscreen{top:10px;right:10px;color:#000;opacity:.3;font-size:1rem}.control-fullscreen:hover{opacity:1;font-size:1rem}.menu{position:absolute;bottom:10px;left:10px;display:flex;flex-flow:column wrap;z-index:1000}.menu-item{flex:1}.normal{padding-top:24px}.textlint{max-height:300px;min-height:300px;background:#263238;color:#9fb4be;overflow:scroll;position:relative}.textlint table{width:100%;margin-top:45px;padding:10px}.textlint td{border-bottom:1px solid #5e7b8a;padding:5px 15px;line-height:24px}.textlint tr:hover{background:#36474f}.textlint-header-button{position:absolute;top:2px;border:1px solid #263238;border-radius:3px;padding:5px;padding-bottom:2px;background:#263238;cursor:pointer}.textlint-header-button:hover{background:#3e515b}.slide-controls{position:relative;height:100%}.markdown-body{box-sizing:border-box;height:100%}.textlint-controls{position:fixed;width:200px;background:#9fb4be;color:#263238;padding:5px}", ""]);
 
 // exports
 
@@ -81211,18 +81211,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": _vm.selectedMdTheme
     }
   }, [_c('div', {
-    staticStyle: {
-      "position": "relative",
-      "overflow": "scroll",
-      "height": "100%"
-    }
+    staticClass: "slide-controls"
   }, [_c('div', {
     staticClass: "markdown-body",
-    staticStyle: {
-      "box-sizing": "border-box",
-      "overflow": "scroll",
-      "height": "100%"
-    },
     domProps: {
       "innerHTML": _vm._s(_vm.parsed)
     }
@@ -81250,13 +81241,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("fullscreen")])]), _vm._v(" "), (_vm.showTextLint) ? _c('div', {
     staticClass: "textlint"
   }, [_c('div', {
-    staticStyle: {
-      "position": "fixed",
-      "width": "200px",
-      "background": "#9fb4be",
-      "color": "#263238",
-      "padding": "5px"
-    }
+    staticClass: "textlint-controls"
   }, [_c('div', {
     staticStyle: {
       "position": "relative"
