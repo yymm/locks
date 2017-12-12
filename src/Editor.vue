@@ -442,7 +442,7 @@ html, body, #editor, #app {
   min-height: 300px;
   background: #263238;
   color: #9fb4be;
-  overflow: scroll;  
+  overflow: scroll;
   position: relative;
 }
 .textlint table {
