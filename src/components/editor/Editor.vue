@@ -66,10 +66,10 @@
 <script>
 import CodeMirror from 'codemirror'
 import axios from 'axios'
-import MdParser from '../../parser/md-parser'
-import MdSlideParser from '../../parser/md-slide-parser'
-import Modal from '../common/ModalDialog.vue'
-import Flash from '../common/Flash.vue'
+import MdParser from '@/parser/md-parser'
+import MdSlideParser from '@/parser/md-slide-parser'
+import Modal from '@/components/common/ModalDialog.vue'
+import Flash from '@/components/common/Flash.vue'
 require('../../../node_modules/codemirror/mode/markdown/markdown')
 require('../../../node_modules/codemirror/mode/gfm/gfm')
 require('../../../node_modules/codemirror/mode/javascript/javascript')
@@ -92,9 +92,9 @@ require('../../../node_modules/codemirror/addon/fold/foldgutter.js')
 require('../../../node_modules/codemirror/addon/fold/markdown-fold.js')
 require('../../../node_modules/codemirror/addon/fold/brace-fold.js')
 require('../../../node_modules/codemirror/addon/lint/lint.js')
-require('../../assets/show-hint-for-emoji.js')
-require('../../assets/ASCIIMathTeXImg.js')
-let LZString = require('../../assets/lz-string.min.js')
+require('@/assets/show-hint-for-emoji.js')
+require('@/assets/ASCIIMathTeXImg.js')
+let LZString = require('@/assets/lz-string.min.js')
 
 export default {
   name: 'app',

@@ -33,8 +33,8 @@ import Header from './Header.vue'
 import Feature from './Feature.vue'
 import Footer from './Footer.vue'
 import Settings from './Settings.vue'
-import Modal from '../common/ModalDialog.vue'
-import Flash from '../common/Flash.vue'
+import Modal from '@/components/common/ModalDialog.vue'
+import Flash from '@/components/common/Flash.vue'
 
 export default {
   data() {
