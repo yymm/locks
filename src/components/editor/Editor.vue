@@ -66,35 +66,35 @@
 <script>
 import CodeMirror from 'codemirror'
 import axios from 'axios'
-import MdParser from './Parser/MarkdownParser'
-import MdSlideParser from './Parser/MarkdownSlideParser'
-import Modal from './ModalDialog.vue'
-import Flash from './Flash.vue'
-require('../node_modules/codemirror/mode/markdown/markdown')
-require('../node_modules/codemirror/mode/gfm/gfm')
-require('../node_modules/codemirror/mode/javascript/javascript')
-require('../node_modules/codemirror/mode/python/python')
-require('../node_modules/codemirror/mode/rust/rust')
-require('../node_modules/codemirror/mode/go/go')
-require('../node_modules/codemirror/mode/vue/vue')
-require('../node_modules/codemirror/mode/css/css')
-require('../node_modules/codemirror/mode/htmlmixed/htmlmixed')
-require('../node_modules/codemirror/mode/commonlisp/commonlisp')
-require('../node_modules/codemirror/mode/shell/shell')
-require('../node_modules/codemirror/mode/jsx/jsx')
-require('../node_modules/codemirror/mode/cmake/cmake')
-require('../node_modules/codemirror/mode/clike/clike')
-require('../node_modules/codemirror/keymap/vim')
-require('../node_modules/codemirror/keymap/emacs')
-require('../node_modules/codemirror/keymap/sublime')
-require('../node_modules/codemirror/addon/fold/foldcode.js')
-require('../node_modules/codemirror/addon/fold/foldgutter.js')
-require('../node_modules/codemirror/addon/fold/markdown-fold.js')
-require('../node_modules/codemirror/addon/fold/brace-fold.js')
-require('../node_modules/codemirror/addon/lint/lint.js')
-require('./assets/show-hint-for-emoji.js')
-require('./assets/ASCIIMathTeXImg.js')
-let LZString = require('./assets/lz-string.min.js')
+import MdParser from '../../parser/MarkdownParser'
+import MdSlideParser from '../../parser/MarkdownSlideParser'
+import Modal from '../common/ModalDialog.vue'
+import Flash from '../common/Flash.vue'
+require('../../../node_modules/codemirror/mode/markdown/markdown')
+require('../../../node_modules/codemirror/mode/gfm/gfm')
+require('../../../node_modules/codemirror/mode/javascript/javascript')
+require('../../../node_modules/codemirror/mode/python/python')
+require('../../../node_modules/codemirror/mode/rust/rust')
+require('../../../node_modules/codemirror/mode/go/go')
+require('../../../node_modules/codemirror/mode/vue/vue')
+require('../../../node_modules/codemirror/mode/css/css')
+require('../../../node_modules/codemirror/mode/htmlmixed/htmlmixed')
+require('../../../node_modules/codemirror/mode/commonlisp/commonlisp')
+require('../../../node_modules/codemirror/mode/shell/shell')
+require('../../../node_modules/codemirror/mode/jsx/jsx')
+require('../../../node_modules/codemirror/mode/cmake/cmake')
+require('../../../node_modules/codemirror/mode/clike/clike')
+require('../../../node_modules/codemirror/keymap/vim')
+require('../../../node_modules/codemirror/keymap/emacs')
+require('../../../node_modules/codemirror/keymap/sublime')
+require('../../../node_modules/codemirror/addon/fold/foldcode.js')
+require('../../../node_modules/codemirror/addon/fold/foldgutter.js')
+require('../../../node_modules/codemirror/addon/fold/markdown-fold.js')
+require('../../../node_modules/codemirror/addon/fold/brace-fold.js')
+require('../../../node_modules/codemirror/addon/lint/lint.js')
+require('../../assets/show-hint-for-emoji.js')
+require('../../assets/ASCIIMathTeXImg.js')
+let LZString = require('../../assets/lz-string.min.js')
 
 export default {
   name: 'app',

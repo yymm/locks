@@ -10,10 +10,10 @@
 </template>
 
 <script>
-require('./assets/ASCIIMathTeXImg.js')
-let LZString = require('./assets/lz-string.min.js')
-import MdParser from './Parser/MarkdownParser'
-import MdSlideParser from './Parser/MarkdownSlideParser'
+require('../../assets/ASCIIMathTeXImg.js')
+let LZString = require('../../assets/lz-string.min.js')
+import MdParser from '../../parser/MarkdownParser'
+import MdSlideParser from '../../parser/MarkdownSlideParser'
 
 export default {
   data() {

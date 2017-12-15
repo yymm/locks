@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import util from './util'
-import Header from './HomeComponents/Header.vue'
-import Feature from './HomeComponents/Feature.vue'
-import Footer from './HomeComponents/Footer.vue'
+import util from '../../util'
+import Header from './Header.vue'
+import Feature from './Feature.vue'
+import Footer from './Footer.vue'
 import Settings from './Settings.vue'
-import Modal from './ModalDialog.vue'
-import Flash from './Flash.vue'
+import Modal from '../common/ModalDialog.vue'
+import Flash from '../common/Flash.vue'
 
 export default {
   data() {

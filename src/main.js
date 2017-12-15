@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
 import Router from 'vue-router'
-import Editor from './Editor.vue'
-import Public from './Public.vue'
-import Home from './Home.vue'
+import App from './components/App.vue'
+import Editor from './components/editor/Editor.vue'
+import Public from './components/public/Public.vue'
+import Home from './components/home/Home.vue'
 
 Vue.use(Router)
 
