@@ -66,8 +66,8 @@
 <script>
 import CodeMirror from 'codemirror'
 import axios from 'axios'
-import MdParser from '../../parser/MarkdownParser'
-import MdSlideParser from '../../parser/MarkdownSlideParser'
+import MdParser from '../../parser/md-parser'
+import MdSlideParser from '../../parser/md-slide-parser'
 import Modal from '../common/ModalDialog.vue'
 import Flash from '../common/Flash.vue'
 require('../../../node_modules/codemirror/mode/markdown/markdown')

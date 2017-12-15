@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import util from '../../util'
+import util from './util'
 import Header from './Header.vue'
 import Feature from './Feature.vue'
 import Footer from './Footer.vue'
