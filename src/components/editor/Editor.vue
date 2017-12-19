@@ -339,30 +339,30 @@ export default {
 
     // for Mobile
     var userAgent = window.navigator.userAgent.toLowerCase()
-    if (userAgent.indexOf('iphone') != -1 || userAgent.indexOf('ipad') != -1 || userAgent.indexOf('android') != -1) {
-      const origOnKeyPress = cm.display.input.onKeyPress
-      cm.display.input.onKeyPress = function(e) {
+    if (userAgent.indexOf('iphone') != -1 || userAgent.indexOf('ipad') != -1) {
+      const origOnKeyPress = this.cm.display.input.onKeyPress
+      this.cm.display.input.onKeyPress = function(e) {
         if(e.which >= 0x10000) {
           return
         }
 
-        if(!cm.display.input.composing) {
-          cm.keyPressTimer = setTimeout( () => {
+        if(!this.cm.display.input.composing) {
+          this.cm.keyPressTimer = setTimeout( () => {
             origOnKeyPress.call(this, e)
           }, 30)
         }
       }
 
-      const inputArea = cm.display.input.div || cm.display.input.textarea
+      const inputArea = this.cm.display.input.div || this.cm.display.input.textarea
       inputArea.addEventListener('compositionstart', (_cm, e) => {
-        if(cm.keyPressTimer) {
-          clearTimeout(cm.keyPressTimer)
+        if(this.cm.keyPressTimer) {
+          clearTimeout(this.cm.keyPressTimer)
         }
       }, false)
 
-      const inputField = cm.display.input.getField()
+      const inputField = this.cm.display.input.getField()
       window.addEventListener('keydown', function(e){
-        if(e.target == inputField && cm.display.input.composing) {
+        if(e.target == inputField && this.cm.display.input.composing) {
           e.stopPropagation()
         }
       }, true)
@@ -373,7 +373,7 @@ export default {
         }
         e.stopPropagation()
 
-        if (cm.display.input.composing) {
+        if (this.cm.display.input.composing) {
           inputField.focus()
           setTimeout(function(){
             inputField.blur()

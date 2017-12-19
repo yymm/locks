@@ -1,20 +1,20 @@
 {
   "name": "locks",
   "description": "LocalStoraged & Rich Markdown Slide Editor.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "yuya yano <yuya.yano.6260@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "[ ! -d ./dist/css ] && ln -s ../docs/css/ ./dist/css || echo 'Symbolic link already exist.' && cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "build": "./node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/webpack --progress --hide-modules",
     "deploy": "mkdir dist && cp docs/build* dist/ && cp -r docs/css dist/ && ls -la dist/ && python -m SimpleHTTPServer $PORT",
     "docs": "cp dist/build.js docs/ && cp index.html docs/ && sed -i'.bak' -e 's|dist/||g' docs/index.html"
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "codemirror": "^5.28.0",
+    "codemirror": "^5.32.0",
     "lodash.assign": "^4.2.0",
-    "markdown-it": "^8.3.1",
+    "markdown-it": "^8.4.0",
     "markdown-it-asciimath": "^1.0.0",
     "markdown-it-block-embed": "^0.0.3",
     "markdown-it-container": "^2.0.0",
@@ -31,21 +31,21 @@
     "markdown-it-smartarrows": "^1.0.1",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "markdown-it-task-lists": "^2.0.1",
-    "vue": "^2.3.3",
-    "vue-router": "^2.7.0"
+    "markdown-it-task-lists": "^2.1.0",
+    "vue": "^2.5.11",
+    "vue-router": "^2.8.1"
   },
   "devDependencies": {
-    "babel-core": "^6.0.0",
+    "babel-core": "^6.26.0",
     "babel-loader": "^6.0.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "vue-loader": "^12.1.0",
-    "vue-template-compiler": "^2.3.3",
+    "vue-template-compiler": "^2.5.11",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.9.7"
   }
 }
