@@ -445,6 +445,7 @@ html, body, #editor, #app {
 }
 .editor {
   flex: 1;
+  overflow-x: scroll;
 }
 .preview {
   flex: 1;
